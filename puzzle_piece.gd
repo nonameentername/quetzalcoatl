@@ -34,6 +34,9 @@ var label: Label = $Label
 @onready
 var sprite: Sprite2D = $Sprite2D
 
+@onready
+var line: Line2D = $Line2D
+
 var valid_position: bool = false
 
 
@@ -52,21 +55,25 @@ func check_collisions():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x, position.y - 128)
 		tween.tween_property(self, "position", end, 0.1)
+		pulse_line()
 
 	elif not bottom_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x, position.y + 128)
 		tween.tween_property(self, "position", end, 0.1)
+		pulse_line()
 
 	elif not left_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x - 128, position.y)
 		tween.tween_property(self, "position", end, 0.1)
+		pulse_line()
 
 	elif not right_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x + 128, position.y)
 		tween.tween_property(self, "position", end, 0.1)
+		pulse_line()
 
 
 func update_valid_position():
@@ -78,3 +85,23 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			check_collisions()
+			pulse_glow()
+
+
+func pulse_glow():
+	var tween = get_tree().create_tween()
+	var target_color = Color.WHITE * 3.0
+	
+	tween.tween_property(self, "modulate", target_color, 0.1)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+
+
+func pulse_line():
+	var target_color = Color.WHITE * 3.0
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(line, "modulate", target_color, 0.2)
+	tween.parallel().tween_property(line, "scale", Vector2(10, 10), 0.2)
+
+	tween.tween_property(line, "modulate", Color.TRANSPARENT, 0.0)
+	tween.parallel().tween_property(line, "scale", Vector2(1, 1), 0.1)

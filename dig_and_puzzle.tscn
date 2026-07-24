@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://20usr2pqobs7"]
+
+[ext_resource type="PackedScene" uid="uid://cld2s5j6txgq8" path="res://sliding_puzzle.tscn" id="1_0jkah"]
+[ext_resource type="Script" uid="uid://d2fjpvovcv6lt" path="res://dig_and_puzzle.gd" id="1_vuq76"]
+[ext_resource type="Texture2D" uid="uid://c6lsutfme54te" path="res://dirt0.png" id="2_gemd6"]
+[ext_resource type="PackedScene" uid="uid://l4f731bs60eg" path="res://fossil_dig_grid.tscn" id="2_vuq76"]
+
+[sub_resource type="Environment" id="Environment_jkhly"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 8.0
+glow_hdr_scale = 0.0
+
+[node name="DigAndPuzzle" type="Node2D" unique_id=1200984853]
+script = ExtResource("1_vuq76")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=594593817]
+texture_repeat = 2
+position = Vector2(640, 384)
+texture = ExtResource("2_gemd6")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 768)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1784311281]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 512.0
+mouse_filter = 2
+color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+
+[node name="SlidingPuzzle" parent="." unique_id=682491742 instance=ExtResource("1_0jkah")]
+position = Vector2(448, 192)
+
+[node name="FossilDigGrid" parent="." unique_id=1805141599 instance=ExtResource("2_vuq76")]
+position = Vector2(448, 192)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=145730073]
+environment = SubResource("Environment_jkhly")
+
+[connection signal="dig_finished" from="FossilDigGrid" to="." method="_on_fossil_dig_grid_dig_finished"]

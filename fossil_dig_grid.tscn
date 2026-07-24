@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://l4f731bs60eg"]
+
+[ext_resource type="Script" uid="uid://2iucokdyrrgi" path="res://fossil_dig_grid.gd" id="1_7vp7k"]
+[ext_resource type="PackedScene" uid="uid://cwav1ii7llhcf" path="res://fossil_dig_piece.tscn" id="1_8146v"]
+
+[node name="FossilDigGrid" type="Node2D" unique_id=1805141599]
+script = ExtResource("1_7vp7k")
+
+[node name="FossilDigPiece1" parent="." unique_id=366633420 instance=ExtResource("1_8146v")]
+
+[node name="FossilDigPiece2" parent="." unique_id=1288223847 instance=ExtResource("1_8146v")]
+position = Vector2(128, 0)
+
+[node name="FossilDigPiece3" parent="." unique_id=833610727 instance=ExtResource("1_8146v")]
+position = Vector2(256, 0)
+
+[node name="FossilDigPiece4" parent="." unique_id=1280655072 instance=ExtResource("1_8146v")]
+position = Vector2(0, 128)
+
+[node name="FossilDigPiece5" parent="." unique_id=794619378 instance=ExtResource("1_8146v")]
+position = Vector2(128, 128)
+
+[node name="FossilDigPiece6" parent="." unique_id=655509368 instance=ExtResource("1_8146v")]
+position = Vector2(256, 128)
+
+[node name="FossilDigPiece7" parent="." unique_id=1808541513 instance=ExtResource("1_8146v")]
+position = Vector2(0, 256)
+
+[node name="FossilDigPiece8" parent="." unique_id=1906851959 instance=ExtResource("1_8146v")]
+position = Vector2(128, 256)
+
+[node name="FossilDigPiece9" parent="." unique_id=682313790 instance=ExtResource("1_8146v")]
+position = Vector2(256, 256)
+
+[connection signal="cleared" from="FossilDigPiece1" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece2" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece3" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece4" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece5" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece6" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece7" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece8" to="." method="_on_fossil_dig_piece_cleared"]
+[connection signal="cleared" from="FossilDigPiece9" to="." method="_on_fossil_dig_piece_cleared"]

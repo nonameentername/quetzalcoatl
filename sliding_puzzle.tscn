@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://cld2s5j6txgq8"]
+
+[ext_resource type="Script" uid="uid://dhod2g4vi6vf5" path="res://sliding_puzzle.gd" id="1_12vtc"]
+[ext_resource type="PackedScene" uid="uid://c3s7hxbj5bqph" path="res://puzzle_piece.tscn" id="1_wm8w8"]
+[ext_resource type="Texture2D" uid="uid://dajklcwq0oa4g" path="res://fossil.png" id="3_82aon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82aon"]
+atlas = ExtResource("3_82aon")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7dp8"]
+atlas = ExtResource("3_82aon")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2lcc"]
+atlas = ExtResource("3_82aon")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq8sl"]
+atlas = ExtResource("3_82aon")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xrvm"]
+atlas = ExtResource("3_82aon")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tock"]
+atlas = ExtResource("3_82aon")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlppk"]
+atlas = ExtResource("3_82aon")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kibi7"]
+atlas = ExtResource("3_82aon")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(384, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15r4v"]
+size = Vector2(384, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwam4"]
+size = Vector2(128, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fu0q"]
+size = Vector2(128, 384)
+
+[node name="SlidingPuzzle" type="Node2D" unique_id=682491742]
+script = ExtResource("1_12vtc")
+
+[node name="PuzzlePiece1" parent="." unique_id=692833966 instance=ExtResource("1_wm8w8")]
+number = 1
+texture = SubResource("AtlasTexture_82aon")
+
+[node name="PuzzlePiece2" parent="." unique_id=635197180 instance=ExtResource("1_wm8w8")]
+position = Vector2(128, 0)
+number = 2
+texture = SubResource("AtlasTexture_m7dp8")
+
+[node name="PuzzlePiece3" parent="." unique_id=1265161706 instance=ExtResource("1_wm8w8")]
+position = Vector2(256, 0)
+number = 3
+texture = SubResource("AtlasTexture_i2lcc")
+
+[node name="PuzzlePiece4" parent="." unique_id=40189394 instance=ExtResource("1_wm8w8")]
+position = Vector2(0, 128)
+number = 4
+texture = SubResource("AtlasTexture_uq8sl")
+
+[node name="PuzzlePiece5" parent="." unique_id=1451225275 instance=ExtResource("1_wm8w8")]
+position = Vector2(128, 128)
+number = 5
+texture = SubResource("AtlasTexture_6xrvm")
+
+[node name="PuzzlePiece6" parent="." unique_id=1037461149 instance=ExtResource("1_wm8w8")]
+position = Vector2(256, 128)
+number = 6
+texture = SubResource("AtlasTexture_5tock")
+
+[node name="PuzzlePiece7" parent="." unique_id=1463673589 instance=ExtResource("1_wm8w8")]
+position = Vector2(0, 256)
+number = 7
+texture = SubResource("AtlasTexture_wlppk")
+
+[node name="PuzzlePiece8" parent="." unique_id=1752710898 instance=ExtResource("1_wm8w8")]
+position = Vector2(128, 256)
+number = 8
+texture = SubResource("AtlasTexture_kibi7")
+
+[node name="TopStaticBody2D" type="StaticBody2D" parent="." unique_id=359401864]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopStaticBody2D" unique_id=503415852]
+position = Vector2(128, -128)
+shape = SubResource("RectangleShape2D_jkhly")
+
+[node name="BottomStaticBody2D" type="StaticBody2D" parent="." unique_id=190533673]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomStaticBody2D" unique_id=504812039]
+position = Vector2(128, 384)
+shape = SubResource("RectangleShape2D_15r4v")
+
+[node name="LeftStaticBody2D" type="StaticBody2D" parent="." unique_id=1175366217]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftStaticBody2D" unique_id=1127230067]
+position = Vector2(-128, 128)
+shape = SubResource("RectangleShape2D_mwam4")
+
+[node name="RightStaticBody2D" type="StaticBody2D" parent="." unique_id=1408798921]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightStaticBody2D" unique_id=1104594350]
+position = Vector2(384, 128)
+shape = SubResource("RectangleShape2D_3fu0q")

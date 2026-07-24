@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c3s7hxbj5bqph"]
+
+[ext_resource type="Script" uid="uid://fiwsdpr31b18" path="res://puzzle_piece.gd" id="1_bfp8d"]
+[ext_resource type="Texture2D" uid="uid://dq8akdrt46q3a" path="res://icon.svg" id="1_fgrtf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(128, 128)
+
+[node name="PuzzlePiece" type="AnimatableBody2D" unique_id=692833966]
+input_pickable = true
+script = ExtResource("1_bfp8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1290453322]
+texture = ExtResource("1_fgrtf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=723031838]
+shape = SubResource("RectangleShape2D_jkhly")
+
+[node name="TopRayCast2D" type="RayCast2D" parent="." unique_id=70231225]
+target_position = Vector2(0, -128)
+
+[node name="BottomRayCast2D" type="RayCast2D" parent="." unique_id=439261510]
+target_position = Vector2(0, 128)
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="." unique_id=1122395150]
+target_position = Vector2(-128, 0)
+
+[node name="RightRayCast2D" type="RayCast2D" parent="." unique_id=1121578615]
+target_position = Vector2(128, 0)
+
+[node name="Label" type="Label" parent="." unique_id=1130442425]
+visible = false
+offset_left = -66.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

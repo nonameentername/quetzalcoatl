@@ -40,6 +40,9 @@ var line: Line2D = $Line2D
 var valid_position: bool = false
 
 
+signal moved (number: int)
+
+
 func _ready() -> void:
 	label.text = str(number)
 	if texture:
@@ -56,24 +59,28 @@ func check_collisions():
 		var end = Vector2(position.x, position.y - 128)
 		tween.tween_property(self, "position", end, 0.1)
 		pulse_line()
+		moved.emit(number)
 
 	elif not bottom_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x, position.y + 128)
 		tween.tween_property(self, "position", end, 0.1)
 		pulse_line()
+		moved.emit(number)
 
 	elif not left_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x - 128, position.y)
 		tween.tween_property(self, "position", end, 0.1)
 		pulse_line()
+		moved.emit(number)
 
 	elif not right_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x + 128, position.y)
 		tween.tween_property(self, "position", end, 0.1)
 		pulse_line()
+		moved.emit(number)
 
 
 func update_valid_position():

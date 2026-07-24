@@ -4,12 +4,15 @@
 [ext_resource type="Script" uid="uid://d2fjpvovcv6lt" path="res://dig_and_puzzle.gd" id="1_vuq76"]
 [ext_resource type="Texture2D" uid="uid://c6lsutfme54te" path="res://dirt0.png" id="2_gemd6"]
 [ext_resource type="PackedScene" uid="uid://l4f731bs60eg" path="res://fossil_dig_grid.tscn" id="2_vuq76"]
+[ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://addons/synths/amsynth.tscn" id="5_e75yl"]
 
 [sub_resource type="Environment" id="Environment_jkhly"]
 background_mode = 3
 glow_enabled = true
 glow_intensity = 8.0
 glow_hdr_scale = 0.0
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jkhly"]
 
 [node name="DigAndPuzzle" type="Node2D" unique_id=1200984853]
 script = ExtResource("1_vuq76")
@@ -31,6 +34,7 @@ color = Color(0.3019608, 0.3019608, 0.3019608, 1)
 
 [node name="SlidingPuzzle" parent="." unique_id=682491742 instance=ExtResource("1_0jkah")]
 position = Vector2(448, 192)
+input_enabled = true
 
 [node name="FossilDigGrid" parent="." unique_id=1805141599 instance=ExtResource("2_vuq76")]
 position = Vector2(448, 192)
@@ -38,4 +42,24 @@ position = Vector2(448, 192)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=145730073]
 environment = SubResource("Environment_jkhly")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1682538063]
+stream = SubResource("AudioStreamCsound_jkhly")
+autoplay = true
+
+[node name="amsynth" parent="." unique_id=1979931238 instance=ExtResource("5_e75yl")]
+visible = false
+instrument_name = "synth"
+csound_name = "Main"
+
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece1" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece2" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece3" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece4" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece5" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece6" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece7" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece8" to="." method="_on_puzzle_piece_moved"]
 [connection signal="dig_finished" from="FossilDigGrid" to="." method="_on_fossil_dig_grid_dig_finished"]
+[connection signal="parameter_changed" from="amsynth" to="." method="_on_amsynth_parameter_changed"]
+
+[editable path="SlidingPuzzle"]

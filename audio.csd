@@ -1,0 +1,27 @@
+<CoundSynthesizer>
+<CsOptions>
+-+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n
+</CsOptions>
+<CsInstruments>
+
+sr = 48000
+ksmps = 32
+nchnls = 2
+0dbfs = 1
+
+massign 0, 0
+
+#include "addons/synths/amsynth_common.inc"
+
+#define INSTRUMENT_NAME #synth#
+#define INSTRUMENT_CHANNEL #1#
+
+#include "addons/synths/amsynth_instr.inc"
+
+</CsInstruments>
+<CsScore>
+f 0 z
+i "synth_mixer" 0 -1
+
+</CsScore>
+</CsoundSynthesizer>

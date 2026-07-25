@@ -9,7 +9,10 @@ var sliding_puzzle: SlidingPuzzle = $SlidingPuzzle
 var fossil_dig_grid: FossilDigGrid = $FossilDigGrid
 
 @onready
-var amsynth: ASynth = $amsynth
+var amsynth: ASynth = $Panel/amsynth
+
+@onready
+var option_button: OptionButton = $Panel/OptionButton
 
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
@@ -73,6 +76,11 @@ func _ready() -> void:
 		"ASynthInput.1.keyboard_mode"
 	]
 
+	var popup_menu: PopupMenu = option_button.get_popup()
+	for i in popup_menu.get_item_count():
+		if popup_menu.is_item_radio_checkable(i):
+			popup_menu.set_item_as_radio_checkable(i, false)
+
 
 func _input(input_event):
 	if input_event is InputEventMIDI:
@@ -88,11 +96,34 @@ func _input(input_event):
 func _on_csound_ready(name: String):
 	if name == "Main":
 		csound_synth = CsoundServer.get_csound(name)
+		#active_instrument = "synth"
+		option_button.selected = 0
 		amsynth.load_preset("res://presets/flute.json")
+
+		option_button.selected = 1
+		amsynth.load_preset("res://presets/guitar.json")
+
+		option_button.selected = 2
+		amsynth.load_preset("res://presets/bass1.json")
+
+		option_button.selected = 3
+		amsynth.load_preset("res://presets/dirty_bass.json")
+
+		option_button.selected = 4
+		amsynth.load_preset("res://presets/atmosphere.json")
+
+		option_button.selected = 5
+		amsynth.load_preset("res://presets/ambience.json")
+
+		option_button.selected = 6
+		amsynth.load_preset("res://presets/space.json")
+
+		option_button.selected = 7
+		amsynth.load_preset("res://presets/bass2.json")
 
 
 func _on_amsynth_parameter_changed(parameter: int, value: float) -> void:
-	var parameter_name = get_parameter_name("synth", parameter)
+	var parameter_name = get_parameter_name(option_button.text, parameter)
 	csound_synth.send_control_channel(parameter_name, value)
 		
 
@@ -102,3 +133,20 @@ func get_parameter_name(instrument: String, parameter: int):
 
 func _on_puzzle_piece_moved(number: int) -> void:
 	csound_synth.event_string('i "synth" 0 10 0 %d 90' % (NOTES[number - 1]))
+
+
+func get_parameter_values(instrument: String):
+	var content = {}
+
+	for parameter in range(0, len(csound_parameters)):
+		var value = csound_synth.get_control_channel(get_parameter_name(instrument, parameter))
+		content[str(parameter)] = str(value)
+
+	return content
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	var content = get_parameter_values(option_button.text)
+
+	amsynth.update_knobs(content)
+	amsynth.update_waveforms()

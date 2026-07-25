@@ -1,6 +1,6 @@
 <CoundSynthesizer>
 <CsOptions>
--+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n
+-+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n -t120
 </CsOptions>
 <CsInstruments>
 
@@ -9,19 +9,118 @@ ksmps = 32
 nchnls = 2
 0dbfs = 1
 
-massign 0, 0
+;massign 0, 0
+
+iDrumsSF2 sfload "assets/128-016-Power.sf2"
+sfpassign 0, iDrumsSF2
+
+chnset 1, "play_drums"
+
+
+instr drums, 1
+  inum  init    p5
+  ivel  init    p6
+  kenv  linsegr 1, 1, 1, .1, 0
+  kamp  = kenv * ivel * 0.0000003 
+  kfreq init 1
+
+  kplay_drums chnget "play_drums"
+
+  if kplay_drums == 1 then
+    a1, a2 sfplay3 ivel, inum, kamp, kfreq, 0
+  else
+    a1 = 0
+    a2 = 0
+  endif
+
+  outs a1, a2
+endin
+
+instr marker, 8
+  rewindscore
+endin
+
+
 
 #include "addons/synths/amsynth_common.inc"
 
+#define INSTRUMENT_NUMBER #10#
 #define INSTRUMENT_NAME #synth#
 #define INSTRUMENT_CHANNEL #1#
 
 #include "addons/synths/amsynth_instr.inc"
 
+#define INSTRUMENT_NUMBER #2#
+#define INSTRUMENT_NAME #guitar#
+#define INSTRUMENT_CHANNEL #2#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #3#
+#define INSTRUMENT_NAME #bass1#
+#define INSTRUMENT_CHANNEL #3#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #4#
+#define INSTRUMENT_NAME #dirty_bass#
+#define INSTRUMENT_CHANNEL #4#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #5#
+#define INSTRUMENT_NAME #atmosphere#
+#define INSTRUMENT_CHANNEL #5#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #6#
+#define INSTRUMENT_NAME #ambience#
+#define INSTRUMENT_CHANNEL #6#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #7#
+#define INSTRUMENT_NAME #space#
+#define INSTRUMENT_CHANNEL #7#
+
+#include "addons/synths/amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #9#
+#define INSTRUMENT_NAME #bass2#
+#define INSTRUMENT_CHANNEL #9#
+
+#include "addons/synths/amsynth_instr.inc"
+
+
+iTempo = 120
+tempo iTempo, 120
+
+instr update_tempo, 100
+  kTempo init 120
+  kTempo chnget "tempo"
+  tempo kTempo, 120
+
+  kCurrentTime times
+  chnset kCurrentTime, "time"
+endin
+
+;massign 1, 10
+
 </CsInstruments>
 <CsScore>
+f 1 0 16384 10 1 ;sine
 f 0 z
 i "synth_mixer" 0 -1
+i "guitar_mixer" 0 -1
+i "bass1_mixer" 0 -1
+i "dirty_bass_mixer" 0 -1
+i "atmosphere_mixer" 0 -1
+i "ambience_mixer" 0 -1
+i "space_mixer" 0 -1
+i "bass2_mixer" 0 -1
+
+;#include "music.sco"
 
 </CsScore>
 </CsoundSynthesizer>

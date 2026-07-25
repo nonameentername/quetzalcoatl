@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://sfnjia2bqiju"]
+
+[ext_resource type="Texture2D" uid="uid://hp80kgsp5rhu" path="res://tail.png" id="1_xgnmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(64, 20)
+
+[node name="QuetzalcoatlTail" type="StaticBody2D" unique_id=807828267]
+
+[node name="Tail" type="Sprite2D" parent="." unique_id=619437546]
+texture = ExtResource("1_xgnmy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046935337]
+shape = SubResource("RectangleShape2D_jkhly")

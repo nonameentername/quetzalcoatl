@@ -14,6 +14,10 @@ var amsynth: ASynth = $Panel/amsynth
 @onready
 var option_button: OptionButton = $Panel/OptionButton
 
+@onready
+var ui: Panel = $Panel
+
+var ui_visible: bool = false
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
 
@@ -85,6 +89,12 @@ func _ready() -> void:
 	for i in popup_menu.get_item_count():
 		if popup_menu.is_item_radio_checkable(i):
 			popup_menu.set_item_as_radio_checkable(i, false)
+
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("toggle_ui"):
+		ui_visible = not ui_visible
+		ui.visible = ui_visible
 
 
 func _input(input_event):

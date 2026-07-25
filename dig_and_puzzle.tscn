@@ -8,11 +8,8 @@
 
 [sub_resource type="Environment" id="Environment_jkhly"]
 background_mode = 3
-glow_enabled = true
 glow_intensity = 8.0
 glow_hdr_scale = 0.0
-
-[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jkhly"]
 
 [node name="DigAndPuzzle" type="Node2D" unique_id=1200984853]
 script = ExtResource("1_vuq76")
@@ -41,10 +38,6 @@ position = Vector2(448, 192)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=145730073]
 environment = SubResource("Environment_jkhly")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1682538063]
-stream = SubResource("AudioStreamCsound_jkhly")
-autoplay = true
 
 [node name="Panel" type="Panel" parent="." unique_id=1238992408]
 visible = false

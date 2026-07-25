@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://v4ibguafng7f"]
+
+[ext_resource type="PackedScene" uid="uid://bv5sljmrc8ods" path="res://quetzalcoatl.tscn" id="1_7ndko"]
+[ext_resource type="PackedScene" uid="uid://chow6htk0ff4i" path="res://player.tscn" id="1_xm210"]
+
+[sub_resource type="Curve2D" id="Curve2D_jkhly"]
+bake_interval = 64.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 256, 128, 0, 0, 0, 0, 704, 128, 0, 0, 0, 0, 704, 512, 0, 0, 0, 0, 64, 512, 0, 0, 0, 0, 64, 320, 0, 0, 0, 0, 256, 320, 0, 0, 0, 0, 960, 320, 0, 0, 0, 0, 960, 48, 0, 0, 0, 0, 256, 48, 0, 0, 0, 0, 256, 128)
+}
+point_count = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(1408, 64)
+
+[node name="OnlyQuetzalcoatl" type="Node2D" unique_id=882733314]
+
+[node name="Player" parent="." unique_id=1198168635 instance=ExtResource("1_xm210")]
+position = Vector2(248, 8)
+high_jump_height = 150.0
+run_speed = 450.0
+
+[node name="Quetzalcoatl" parent="." unique_id=878925923 node_paths=PackedStringArray("follow_path") instance=ExtResource("1_7ndko")]
+follow_path = NodePath("../Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1858668538]
+curve = SubResource("Curve2D_jkhly")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1620092215]
+position = Vector2(256, 128)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=460945392]
+position = Vector2(0, 296)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=618160528]
+position = Vector2(576, 312)
+shape = SubResource("RectangleShape2D_jkhly")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1599688568]
+offset_left = -128.0
+offset_top = 280.0
+offset_right = 1280.0
+offset_bottom = 344.0

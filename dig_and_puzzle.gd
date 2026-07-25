@@ -21,6 +21,11 @@ const NOTES = [48, 50, 52, 53, 55, 57, 58, 60]
 
 
 func _on_fossil_dig_grid_dig_finished() -> void:
+	await get_tree().create_timer(0.2).timeout
+
+	option_button.selected = 0
+	amsynth.load_preset("res://presets/flute.json")
+
 	sliding_puzzle.input_enabled = true
 	fossil_dig_grid.queue_free()
 
@@ -98,7 +103,7 @@ func _on_csound_ready(name: String):
 		csound_synth = CsoundServer.get_csound(name)
 		#active_instrument = "synth"
 		option_button.selected = 0
-		amsynth.load_preset("res://presets/flute.json")
+		amsynth.load_preset("res://presets/dirt.json")
 
 		option_button.selected = 1
 		amsynth.load_preset("res://presets/guitar.json")
@@ -150,3 +155,7 @@ func _on_option_button_item_selected(index: int) -> void:
 
 	amsynth.update_knobs(content)
 	amsynth.update_waveforms()
+
+
+func _on_fossil_dig_piece_clearing() -> void:
+	csound_synth.event_string('i "synth" 0 0.1 0 %d 90' % (64))

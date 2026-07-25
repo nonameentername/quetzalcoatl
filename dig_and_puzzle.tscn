@@ -47,6 +47,7 @@ stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
 
 [node name="Panel" type="Panel" parent="." unique_id=1238992408]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
@@ -93,7 +94,17 @@ csound_name = "Main"
 [connection signal="moved" from="SlidingPuzzle/PuzzlePiece7" to="." method="_on_puzzle_piece_moved"]
 [connection signal="moved" from="SlidingPuzzle/PuzzlePiece8" to="." method="_on_puzzle_piece_moved"]
 [connection signal="dig_finished" from="FossilDigGrid" to="." method="_on_fossil_dig_grid_dig_finished"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece1" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece2" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece3" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece4" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece5" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece6" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece7" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece8" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece9" to="." method="_on_fossil_dig_piece_clearing"]
 [connection signal="item_selected" from="Panel/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="parameter_changed" from="Panel/amsynth" to="." method="_on_amsynth_parameter_changed"]
 
 [editable path="SlidingPuzzle"]
+[editable path="FossilDigGrid"]

@@ -102,6 +102,15 @@ func _on_csound_ready(name: String):
 		option_button.selected = 7
 		amsynth.load_preset("res://presets/bass2.json")
 
+		option_button.selected = 8
+		amsynth.load_preset("res://presets/jump.json")
+
+		option_button.selected = 9
+		amsynth.load_preset("res://presets/shoot.json")
+
+		option_button.selected = 10
+		amsynth.load_preset("res://presets/swap.json")
+
 
 func _input(input_event):
 	if input_event is InputEventMIDI:

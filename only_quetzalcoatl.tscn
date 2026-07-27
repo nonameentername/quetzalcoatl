@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://chow6htk0ff4i" path="res://player.tscn" id="1_xm210"]
 
 [sub_resource type="Curve2D" id="Curve2D_jkhly"]
-bake_interval = 64.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 256, 128, 0, 0, 0, 0, 704, 128, 0, 0, 0, 0, 704, 512, 0, 0, 0, 0, 64, 512, 0, 0, 0, 0, 64, 320, 0, 0, 0, 0, 256, 320, 0, 0, 0, 0, 960, 320, 0, 0, 0, 0, 960, 48, 0, 0, 0, 0, 256, 48, 0, 0, 0, 0, 256, 128)
 }

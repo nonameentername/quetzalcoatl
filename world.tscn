@@ -70,7 +70,7 @@ shader_parameter/opacity = 1.0
 size = Vector2(640, 704)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wse8f"]
-size = Vector2(272, 96)
+size = Vector2(272, 432)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic0uy"]
 size = Vector2(392, 224)
@@ -85,7 +85,6 @@ size = Vector2(464, 80)
 size = Vector2(336, 360)
 
 [sub_resource type="Curve2D" id="Curve2D_wse8f"]
-bake_interval = 64.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 64, 1024, 0, 0, 0, 0, 512, 1024, 0, 0, 0, 0, 512, 576, 0, 0, 0, 0, 512, -48, 0, 0, 0, 0, 320, -48, 0, 0, 0, 0, 320, 408, 0, 0, 0, 0, 320, 664, 0, 0, 0, 0, 128, 664, 0, 0, 0, 0, 128, 360, 0, 0, 0, 0, 2440, 360)
 }
@@ -170,7 +169,7 @@ shape = SubResource("RectangleShape2D_ioo17")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallRoomArea2D" unique_id=1788720330]
-position = Vector2(792, 640)
+position = Vector2(792, 472)
 shape = SubResource("RectangleShape2D_wse8f")
 
 [node name="MediumRoomArea2D" type="Area2D" parent="." unique_id=955311334]

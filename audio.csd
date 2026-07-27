@@ -12,7 +12,11 @@ nchnls = 2
 iDrumsSF2 sfload "assets/128-016-Power.sf2"
 sfpassign 0, iDrumsSF2
 
-chnset 1, "play_drums"
+chnset 0, "play_drums"
+chnset 0, "play_dirty_bass"
+chnset 1, "play_atmosphere"
+chnset 1, "play_ambience"
+chnset 1, "play_space"
 
 massign 0, 0
 
@@ -66,7 +70,7 @@ endin
 
 #include "addons/synths/amsynth_common.inc"
 
-#define INSTRUMENT_NUMBER #10#
+#define INSTRUMENT_NUMBER #13#
 #define INSTRUMENT_NAME #synth#
 #define INSTRUMENT_CHANNEL #1#
 
@@ -114,6 +118,24 @@ endin
 
 #include "amsynth_instr.inc"
 
+#define INSTRUMENT_NUMBER #10#
+#define INSTRUMENT_NAME #jump#
+#define INSTRUMENT_CHANNEL #10#
+
+#include "amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #11#
+#define INSTRUMENT_NAME #shoot#
+#define INSTRUMENT_CHANNEL #11#
+
+#include "amsynth_instr.inc"
+
+#define INSTRUMENT_NUMBER #12#
+#define INSTRUMENT_NAME #swap#
+#define INSTRUMENT_CHANNEL #12#
+
+#include "amsynth_instr.inc"
+
 
 iTempo = 120
 tempo iTempo, 120
@@ -142,6 +164,9 @@ i "atmosphere_mixer" 0 -1
 i "ambience_mixer" 0 -1
 i "space_mixer" 0 -1
 i "bass2_mixer" 0 -1
+i "jump_mixer" 0 -1
+i "shoot_mixer" 0 -1
+i "swap_mixer" 0 -1
 
 #include "music.sco"
 

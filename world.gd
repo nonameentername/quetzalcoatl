@@ -63,10 +63,10 @@ func _ready():
 func _process(delta: float) -> void:
 	var position: float = 2 + ((int(player.position.x) % 128) / 128.0)
 	
-	if not synth_active["guitar"]:
-		pass
-		#dirty_bass
-		#csound_synth.send_control_channel("SYNTH_LFO_FREQ_INPUT_CONTROL", position)
+	#if not synth_active["guitar"]:
+	if csound_synth:
+		csound_synth.send_control_channel("dirty_bass.ASynthLfo.1.lfo_freq", position)
+		
 
 
 func _physics_process(delta):
@@ -131,11 +131,10 @@ func csound_layout_changed():
 func _on_csound_ready(name: String):
 	if name == "Main":
 		csound_synth = CsoundServer.get_csound(name)
+		#csound_synth.event_string('#include "music.sco"')
 
 
 func _on_midi_note_on(channel, note, velocity):
-	#print("Note On: channel: ", channel, " note: ", note, " velocity: ", velocity)
-
 	if csound_synth and channel == 1 and synth_active["guitar"]:
 		csound_synth.note_on(0, note, velocity)
 
@@ -143,7 +142,7 @@ func _on_midi_note_on(channel, note, velocity):
 		csound_synth.note_on(0, note, velocity)
 
 	if csound_synth and channel == 3 and synth_active["dirty_bass"]:
-		csound_synth.note_on(0, note, velocity)
+		csound_synth.note_on(3, note, velocity)
 
 	if csound_synth and channel == 4 and synth_active["atmosphere"]:
 		csound_synth.note_on(0, note, velocity)
@@ -168,7 +167,7 @@ func _on_midi_note_off(channel, note):
 		csound_synth.note_off(0, note)
 
 	if csound_synth and channel == 3:
-		csound_synth.note_off(0, note)
+		csound_synth.note_off(3, note)
 
 	if csound_synth and channel == 4:
 		csound_synth.note_off(0, note)

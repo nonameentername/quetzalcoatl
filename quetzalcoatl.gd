@@ -22,7 +22,7 @@ var current_velocity: Vector2
 var direction_velocity: int = 20048
 var next_direction: Direction = Direction.RIGHT
 
-var number_segments = 40
+var number_segments = 10
 var segments: Array[QuetzalcoatlBody]
 
 

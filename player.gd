@@ -8,6 +8,7 @@ class_name Player
 @export var jump_time_to_descent: float
 @export var walk_speed = 300.0
 @export var run_speed = 600.0
+@export var fall_terminal_velocity: int = 1000
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var shoot_timer: Timer = $Timer
@@ -185,6 +186,9 @@ func _physics_process(delta):
 		#current_state = PlayerState.IDLE
 
 	velocity.y += get_my_gravity() * delta
+
+	if velocity.y > fall_terminal_velocity:
+		velocity.y = fall_terminal_velocity
 
 	move_and_slide()
 	handle_collisions()

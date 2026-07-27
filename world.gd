@@ -21,6 +21,15 @@ var shader: ColorRect = $Shader
 @onready
 var player: Player = $Player
 
+@onready
+var tile_map1: TileMapLayer = $TileMapLayer1
+
+@onready
+var tile_map2: TileMapLayer = $TileMapLayer2
+
+@onready
+var tile_map_swapped: bool = false
+
 var number_of_brains = 0
 var allow_glitch: bool = true
 
@@ -58,6 +67,59 @@ func _process(delta: float) -> void:
 		pass
 		#dirty_bass
 		#csound_synth.send_control_channel("SYNTH_LFO_FREQ_INPUT_CONTROL", position)
+
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("swap"):
+		var pixelation_tween = get_tree().create_tween()
+
+		#TODO: remove duplicate code
+
+		pixelation_tween.tween_method(
+			func(value): shader.material.set_shader_parameter("pixelation", value),
+			0.001,
+			0.1,
+			0.2
+		)
+
+		tile_map_swapped = not tile_map_swapped
+
+		tile_map1.collision_enabled = not tile_map_swapped
+		tile_map1.visible = not tile_map_swapped
+
+		tile_map2.collision_enabled = tile_map_swapped
+		tile_map2.visible = tile_map_swapped
+
+		pixelation_tween.tween_method(
+			func(value): shader.material.set_shader_parameter("pixelation", value),
+			0.1,
+			0.001,
+			0.2
+		)
+
+	if player.position.y > 1000:
+
+		#TODO: remove duplicate code
+
+		var pixelation_tween = get_tree().create_tween()
+
+		pixelation_tween.tween_method(
+			func(value): shader.material.set_shader_parameter("pixelation", value),
+			0.001,
+			0.1,
+			0.2
+		)
+
+		player.position.x = 100
+		player.position.y = 670
+
+		pixelation_tween.tween_method(
+			func(value): shader.material.set_shader_parameter("pixelation", value),
+			0.1,
+			0.001,
+			0.2
+		)
+
 
 
 func csound_layout_changed():

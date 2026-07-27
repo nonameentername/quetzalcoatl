@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cxtmfloibhvh2"]
+
+[ext_resource type="PackedScene" uid="uid://3ofuqor8abad" path="res://world.tscn" id="1_330da"]
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jkhly"]
+
+[node name="OnlyWorld" type="Node2D" unique_id=156107308]
+
+[node name="World" parent="." unique_id=2137336129 instance=ExtResource("1_330da")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=718084260]
+stream = SubResource("AudioStreamCsound_jkhly")
+autoplay = true

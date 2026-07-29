@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d2fjpvovcv6lt" path="res://dig_and_puzzle.gd" id="1_vuq76"]
 [ext_resource type="Texture2D" uid="uid://c6lsutfme54te" path="res://dirt0.png" id="2_gemd6"]
 [ext_resource type="PackedScene" uid="uid://l4f731bs60eg" path="res://fossil_dig_grid.tscn" id="2_vuq76"]
+[ext_resource type="PackedScene" uid="uid://b5u602h7ujwx0" path="res://grid_cursor.tscn" id="5_e75yl"]
 
 [sub_resource type="Environment" id="Environment_jkhly"]
 background_mode = 3
@@ -40,6 +41,11 @@ position = Vector2(448, 192)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=145730073]
 environment = SubResource("Environment_jkhly")
 
+[node name="GridCursor" parent="." unique_id=534375161 instance=ExtResource("5_e75yl")]
+position = Vector2(512, 256)
+
+[connection signal="dig_finished" from="." to="GridCursor" method="_on_dig_and_puzzle_dig_finished"]
+[connection signal="solved" from="SlidingPuzzle" to="." method="_on_sliding_puzzle_solved"]
 [connection signal="moved" from="SlidingPuzzle/PuzzlePiece1" to="." method="_on_puzzle_piece_moved"]
 [connection signal="moved" from="SlidingPuzzle/PuzzlePiece2" to="." method="_on_puzzle_piece_moved"]
 [connection signal="moved" from="SlidingPuzzle/PuzzlePiece3" to="." method="_on_puzzle_piece_moved"]

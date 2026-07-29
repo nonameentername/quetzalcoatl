@@ -6,6 +6,15 @@ var random = RandomNumberGenerator.new()
 @export
 var brain_scene: PackedScene
 
+@export
+var input_enabled: bool:
+	set(value):
+		input_enabled = value
+		if player:
+			player.input_enabled = value
+	get():
+		return input_enabled
+
 @onready
 var brain_spawn_timer: Timer = $SpawnTimer
 
@@ -67,6 +76,9 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta):
+	if not input_enabled:
+		return
+	
 	if Input.is_action_just_pressed("swap"):
 		var pixelation_tween = get_tree().create_tween()
 

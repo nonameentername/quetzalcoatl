@@ -168,7 +168,7 @@ i "jump_mixer" 0 -1
 i "shoot_mixer" 0 -1
 i "swap_mixer" 0 -1
 
-#include "music.sco"
+;#include "music.sco"
 
 </CsScore>
 </CsoundSynthesizer>

@@ -158,3 +158,7 @@ func _on_option_button_item_selected(index: int) -> void:
 func _on_dig_and_puzzle_dig_finished() -> void:
 	option_button.selected = 0
 	amsynth.load_preset("res://presets/flute.json")
+
+
+func _on_dig_and_puzzle_solved() -> void:
+	pass # Replace with function body.

@@ -53,7 +53,9 @@ func _physics_process(delta: float) -> void:
 	update_valid_position()
 
 
-func check_collisions():
+func try_move():
+	pulse_glow()
+
 	if not top_ray.is_colliding():
 		var tween = get_tree().create_tween()
 		var end = Vector2(position.x, position.y - 128)
@@ -91,8 +93,7 @@ func update_valid_position():
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			check_collisions()
-			pulse_glow()
+			try_move()
 
 
 func pulse_glow():

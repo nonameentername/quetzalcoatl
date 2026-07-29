@@ -10,6 +10,9 @@ class_name Player
 @export var run_speed = 600.0
 @export var fall_terminal_velocity: int = 1000
 
+@export
+var input_enabled: bool = false
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var shoot_timer: Timer = $Timer
 
@@ -28,7 +31,6 @@ var bullet_scene: PackedScene
 
 
 enum PlayerState { IDLE, WALKING, RUNNING, JUMPING, HIGH_JUMP, DUCKING }
-
 
 var previous_state: PlayerState
 var current_state: PlayerState = PlayerState.IDLE
@@ -61,6 +63,9 @@ func set_current_state(state: PlayerState):
 
 
 func _physics_process(delta):
+	if not input_enabled:
+		return
+
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 
 	if Input.is_action_just_pressed("shoot"):

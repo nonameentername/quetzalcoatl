@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chow6htk0ff4i"]
 
-[ext_resource type="Texture2D" uid="uid://hfcyfduxe6gu" path="res://megatroid.png" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://cd6wkl22ul777" path="res://megatroid.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://m3c8q888mbq1" path="res://player.gd" id="1_onrkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]

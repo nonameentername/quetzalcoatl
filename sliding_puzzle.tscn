@@ -86,7 +86,7 @@ number = 7
 texture = SubResource("AtlasTexture_wlppk")
 
 [node name="PuzzlePiece8" parent="." unique_id=1752710898 instance=ExtResource("1_wm8w8")]
-position = Vector2(128, 256)
+position = Vector2(256, 256)
 number = 8
 texture = SubResource("AtlasTexture_kibi7")
 

@@ -22,10 +22,10 @@ size_2d_override = Vector2i(640, 360)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Node2D" parent="SubViewportContainer/SubViewport" unique_id=2137336129 instance=ExtResource("1_ig7tw")]
+[node name="World" parent="SubViewportContainer/SubViewport" unique_id=2137336129 instance=ExtResource("1_ig7tw")]
+visible = false
 
 [node name="DigAndPuzzle" parent="." unique_id=1200984853 instance=ExtResource("3_h2yge")]
-visible = false
 
 [node name="Panel" type="Panel" parent="." unique_id=954940454]
 visible = false
@@ -77,5 +77,6 @@ stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
 
 [connection signal="dig_finished" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_dig_finished"]
+[connection signal="solved" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_solved"]
 [connection signal="item_selected" from="Panel/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="parameter_changed" from="Panel/amsynth" to="." method="_on_amsynth_parameter_changed"]

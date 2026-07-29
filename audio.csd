@@ -14,9 +14,9 @@ sfpassign 0, iDrumsSF2
 
 chnset 0, "play_drums"
 chnset 0, "play_dirty_bass"
-chnset 1, "play_atmosphere"
-chnset 1, "play_ambience"
-chnset 1, "play_space"
+chnset 0, "play_atmosphere"
+chnset 0, "play_ambience"
+chnset 0, "play_space"
 
 massign 0, 0
 
@@ -168,7 +168,7 @@ i "jump_mixer" 0 -1
 i "shoot_mixer" 0 -1
 i "swap_mixer" 0 -1
 
-;#include "music.sco"
+#include "music.sco"
 
 </CsScore>
 </CsoundSynthesizer>

@@ -23,9 +23,9 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="World" parent="SubViewportContainer/SubViewport" unique_id=2137336129 instance=ExtResource("1_ig7tw")]
-visible = false
 
 [node name="DigAndPuzzle" parent="." unique_id=1200984853 instance=ExtResource("3_h2yge")]
+position = Vector2(0, 648)
 
 [node name="Panel" type="Panel" parent="." unique_id=954940454]
 visible = false
@@ -75,6 +75,9 @@ csound_name = "Main"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1413985370]
 stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1018468976]
+position = Vector2(576, 972)
 
 [connection signal="dig_finished" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_dig_finished"]
 [connection signal="solved" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_solved"]

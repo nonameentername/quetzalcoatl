@@ -12,6 +12,8 @@ var input_enabled: bool:
 		input_enabled = value
 		if player:
 			player.input_enabled = value
+		if quetzalcoatl:
+			quetzalcoatl.movement_enabled = true
 	get():
 		return input_enabled
 
@@ -31,6 +33,9 @@ var shader: ColorRect = $Shader
 var player: Player = $Player
 
 @onready
+var quetzalcoatl : Quetzalcoatl = $Quetzalcoatl
+
+@onready
 var tile_map1: TileMapLayer = $TileMapLayer1
 
 @onready
@@ -38,6 +43,15 @@ var tile_map2: TileMapLayer = $TileMapLayer2
 
 @onready
 var tile_map_swapped: bool = false
+
+@onready
+var effect: CPUParticles2D = $Area2D/CPUParticles2D
+
+@onready
+var space: AnimatedSprite2D = $Space
+
+@onready
+var button_r1: AnimatedSprite2D = $R1
 
 var number_of_brains = 0
 var allow_glitch: bool = true
@@ -53,6 +67,8 @@ var synth_active = {}
 
 const NOTES = [48, 50, 52, 53, 55, 57, 58]
 
+var using_keyboard: bool = false
+
 
 
 func _ready():
@@ -61,9 +77,9 @@ func _ready():
 	set_instrument_active("guitar", false)
 	set_instrument_active("bass1", false)
 	set_instrument_active("dirty_bass", false)
-	set_instrument_active("atmosphere", true)
-	set_instrument_active("ambience", true)
-	set_instrument_active("space", true)
+	set_instrument_active("atmosphere", false)
+	set_instrument_active("ambience", false)
+	set_instrument_active("space", false)
 	set_instrument_active("bass2", false)
 
 
@@ -74,12 +90,20 @@ func _process(delta: float) -> void:
 		csound.send_control_channel("dirty_bass.ASynthLfo.1.lfo_freq", position)
 		
 
+func _input(event):
+	if event is InputEventKey and event.pressed: # and not event.is_echo():
+		if event.keycode == KEY_J:
+			using_keyboard = true
+
 
 func _physics_process(delta):
 	if not input_enabled:
 		return
 	
 	if Input.is_action_just_pressed("swap"):
+		space.hide()
+		button_r1.hide()
+
 		var pixelation_tween = get_tree().create_tween()
 
 		#TODO: remove duplicate code
@@ -193,6 +217,13 @@ func rewind_score():
 
 
 func _on_outside_area_2d_body_entered(body: Node2D) -> void:
+	outside_audio()
+
+
+func outside_audio():
+	if not player.input_enabled:
+		return
+
 	set_instrument_active("atmosphere", true)
 	set_instrument_active("ambience", true)
 	set_instrument_active("space", true)
@@ -270,3 +301,19 @@ func _on_player_jump() -> void:
 func _on_player_shoot() -> void:
 	var offset = randi_range(0, 6)
 	csound.event_string('i "shoot" 0 0.01 0 %d 90' % (NOTES[offset]))
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Quetzalcoatl:
+		effect.emitting = false
+		effect.emitting = true
+		csound.event_string('i "synth" 0 0.1 0 %d 90' % (64))
+
+
+func _on_swap_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player and not input_enabled:
+		input_enabled = true
+		if using_keyboard:
+			space.show()
+		else:
+			button_r1.show()

@@ -10,6 +10,9 @@
 [ext_resource type="TileSet" uid="uid://i1lvxqjnfpwm" path="res://tile_set.tres" id="4_ioo17"]
 [ext_resource type="Shader" uid="uid://cjm13wwaj3o0n" path="res://world.gdshader" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://bv5sljmrc8ods" path="res://quetzalcoatl.tscn" id="9_ioo17"]
+[ext_resource type="Texture2D" uid="uid://baxmv1pfrehyf" path="res://dirt1.png" id="11_ic0uy"]
+[ext_resource type="Texture2D" uid="uid://cd0ja7bfoett6" path="res://Space-Key.png" id="12_k3n1d"]
+[ext_resource type="Texture2D" uid="uid://vhpb8gwx6isk" path="res://R1-Button.png" id="13_2o6r5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlwt5"]
 texture = ExtResource("1_fj7yv")
@@ -90,6 +93,60 @@ _data = {
 }
 point_count = 10
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3n1d"]
+atlas = ExtResource("11_ic0uy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15r4v"]
+size = Vector2(16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o6r5"]
+atlas = ExtResource("12_k3n1d")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70uel"]
+atlas = ExtResource("12_k3n1d")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hiqwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o6r5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70uel")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiqwa"]
+atlas = ExtResource("13_2o6r5")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u3nc"]
+atlas = ExtResource("13_2o6r5")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkhly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiqwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u3nc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="World" type="Node2D" unique_id=2137336129]
 texture_filter = 1
 script = ExtResource("1_dwbse")
@@ -143,9 +200,6 @@ wait_time = 0.2
 
 [node name="GlitchTimer" type="Timer" parent="." unique_id=60546274]
 wait_time = 0.4
-
-[node name="brain" parent="." unique_id=625299191 instance=ExtResource("2_pkg7o")]
-position = Vector2(464, 696)
 
 [node name="Shader" type="ColorRect" parent="." unique_id=1989741648]
 material = SubResource("ShaderMaterial_ioo17")
@@ -221,6 +275,40 @@ curve = SubResource("Curve2D_wse8f")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=360159511]
 position = Vector2(64, 1024)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=865002460]
+position = Vector2(512, 736)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Area2D" unique_id=2006044697]
+z_index = 1
+emitting = false
+amount = 4
+texture = SubResource("AtlasTexture_k3n1d")
+one_shot = true
+speed_scale = 2.0
+draw_order = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=952484734]
+shape = SubResource("RectangleShape2D_jkhly")
+
+[node name="SwapArea2D" type="Area2D" parent="." unique_id=1743931400]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwapArea2D" unique_id=1787009064]
+position = Vector2(584, 344)
+shape = SubResource("RectangleShape2D_15r4v")
+
+[node name="Space" type="AnimatedSprite2D" parent="." unique_id=378097996]
+visible = false
+position = Vector2(584, 392)
+sprite_frames = SubResource("SpriteFrames_hiqwa")
+autoplay = "default"
+
+[node name="R1" type="AnimatedSprite2D" parent="." unique_id=376468490]
+visible = false
+position = Vector2(584, 392)
+sprite_frames = SubResource("SpriteFrames_jkhly")
+autoplay = "default"
+frame_progress = 0.972021
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="GlitchTimer" to="." method="_on_glitch_timer_timeout"]
 [connection signal="body_entered" from="OutsideArea2D" to="." method="_on_outside_area_2d_body_entered"]
@@ -233,3 +321,5 @@ position = Vector2(64, 1024)
 [connection signal="brain_collision" from="Player" to="." method="_on_player_brain_collision"]
 [connection signal="jump" from="Player" to="." method="_on_player_jump"]
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="SwapArea2D" to="." method="_on_swap_area_2d_body_entered"]

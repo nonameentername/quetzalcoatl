@@ -7,6 +7,9 @@ var body_scene: PackedScene
 @export
 var follow_path: PathFollow2D
 
+@export
+var movement_enabled: bool = false
+
 @onready
 var sprite: Sprite2D = $Head
 
@@ -41,6 +44,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not movement_enabled:
+		return
+
 	follow_path.progress += 5.0
 
 	var head_progress := follow_path.progress

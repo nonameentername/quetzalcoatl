@@ -10,6 +10,15 @@ var option_button: OptionButton = $Panel/OptionButton
 @onready
 var ui: Panel = $Panel
 
+@onready
+var world: World = $SubViewportContainer/SubViewport/World
+
+@onready
+var camera: Camera2D = $Camera2D
+
+@onready
+var dig_and_puzzle: DigAndPuzzle = $DigAndPuzzle
+
 var ui_visible: bool = false
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
@@ -73,7 +82,6 @@ func _ready() -> void:
 
 
 func _on_csound_ready(name: String):
-
 	if name == "Main":
 		print ("_on_csound_ready")
 		csound_synth = CsoundServer.get_csound(name)
@@ -161,4 +169,19 @@ func _on_dig_and_puzzle_dig_finished() -> void:
 
 
 func _on_dig_and_puzzle_solved() -> void:
-	pass # Replace with function body.
+	var tween = get_tree().create_tween()
+	var end = Vector2(camera.position.x, camera.position.y - 648)
+	tween.tween_property(camera, "position", end, 2.0)
+
+	await get_tree().create_timer(2.0).timeout
+
+	camera.queue_free()
+	dig_and_puzzle.queue_free()
+
+	option_button.selected = 0
+	amsynth.load_preset("res://presets/dirt.json")
+
+	world.player.input_enabled = true
+	world.quetzalcoatl.movement_enabled = true
+
+	world.outside_audio()

@@ -11,9 +11,14 @@ var fossil_dig_grid: FossilDigGrid = $FossilDigGrid
 @onready
 var cursor: Area2D = $GridCursor
 
+@onready
+var label: Label = $Label
+
 var csound_synth: CsoundInstance
 
 const NOTES = [48, 50, 52, 53, 55, 57, 58, 60]
+
+var tutorial: bool = true
 
 signal dig_finished
 signal solved
@@ -26,6 +31,17 @@ func _ready() -> void:
 func _on_csound_ready(name: String):
 	if name == "Main":
 		csound_synth = CsoundServer.get_csound(name)
+
+
+func _physics_process(delta):
+	if tutorial:
+		label.text = "%d / 6" % [cursor.keys.size()]
+		if cursor.keys.size() == 6:
+			tutorial = false
+	elif fossil_dig_grid:
+		label.text = "%d / 9" % [fossil_dig_grid.blocks_cleared]
+	else:
+		label.hide()
 
 
 func _on_fossil_dig_grid_dig_finished() -> void:

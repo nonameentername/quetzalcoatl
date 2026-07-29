@@ -243,6 +243,10 @@ func _on_small_room_area_2d_body_entered(body: Node2D) -> void:
 	set_instrument_active("space", true)
 	set_instrument_active("dirty_bass", true)
 	set_instrument_active("drums", true)
+	set_instrument_active("bass1", false)
+	set_instrument_active("bass2", false)
+	set_instrument_active("guitar", false)
+
 	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
 
 	#set_score_position(0)
@@ -253,16 +257,27 @@ func _on_medium_room_area_2d_body_entered(body: Node2D) -> void:
 	set_instrument_active("atmosphere", false)
 	set_instrument_active("ambience", false)
 	set_instrument_active("space", false)
+	set_instrument_active("dirty_bass", true)
+	set_instrument_active("drums", true)
 	set_instrument_active("bass1", false)
 	set_instrument_active("bass2", false)
 	set_instrument_active("guitar", false)
 
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
+
 
 func _on_large_room_area_2d_body_entered(body: Node2D) -> void:
+	set_instrument_active("atmosphere", false)
+	set_instrument_active("ambience", false)
+	set_instrument_active("space", false)
+	set_instrument_active("dirty_bass", true)
+	set_instrument_active("drums", true)
 	set_instrument_active("bass1", true)
 	set_instrument_active("bass2", true)
 	set_instrument_active("guitar", true)
+
 	csound.send_control_channel("dirty_bass.ASynthLfo.1.lfo_freq", 2.479)
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
 
 
 func _on_enemy_area_2d_body_entered(body: Node2D) -> void:

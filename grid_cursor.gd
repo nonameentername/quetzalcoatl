@@ -32,7 +32,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-
 	if Input.is_action_just_pressed("left"):
 		keys["left"]  = true
 		left.play()
@@ -70,25 +69,20 @@ func _physics_process(delta):
 	if tutorial:
 		return
 
+	var end: Vector2
+
 	if Input.is_action_just_pressed("left"):
-		var tween = get_tree().create_tween()
-		var end = Vector2(position.x - 128, position.y)
-		tween.tween_property(self, "position", end, 0.1)
-
+		end = Vector2(position.x - 128, position.y)
+		tween_position(end)
 	elif Input.is_action_just_pressed("right"):
-		var tween = get_tree().create_tween()
-		var end = Vector2(position.x + 128, position.y)
-		tween.tween_property(self, "position", end, 0.1)
-
+		end = Vector2(position.x + 128, position.y)
+		tween_position(end)
 	elif Input.is_action_just_pressed("up"):
-		var tween = get_tree().create_tween()
-		var end = Vector2(position.x, position.y - 128)
-		tween.tween_property(self, "position", end, 0.1)
-
+		end = Vector2(position.x, position.y - 128)
+		tween_position(end)
 	elif Input.is_action_just_pressed("down"):
-		var tween = get_tree().create_tween()
-		var end = Vector2(position.x, position.y + 128)
-		tween.tween_property(self, "position", end, 0.1)
+		end = Vector2(position.x, position.y + 128)
+		tween_position(end)
 
 	if Input.is_action_just_pressed("shoot"):
 		if digging and current_dig:
@@ -102,6 +96,15 @@ func _physics_process(delta):
 			current_dig.dig()
 		if current_puzzle_piece:
 			current_puzzle_piece.try_move()
+
+func tween_position(end: Vector2):
+	end = end.clamp(
+		Vector2.ZERO,
+		Vector2(1024, 512)
+	)
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", end, 0.1)
 
 
 func _on_body_entered(body: Node2D) -> void:

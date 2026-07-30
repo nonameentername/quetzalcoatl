@@ -53,7 +53,7 @@ var space: AnimatedSprite2D = $Space
 @onready
 var button_r1: AnimatedSprite2D = $R1
 
-var number_of_brains = 0
+var number_of_brains = 20
 var allow_glitch: bool = true
 
 var control_tweens: Dictionary = {}
@@ -159,6 +159,8 @@ func _physics_process(delta):
 			0.2
 		)
 
+		update_tempo(120)
+
 
 func _on_csound_ready(name: String):
 	if name == "Main":
@@ -167,7 +169,7 @@ func _on_csound_ready(name: String):
 
 
 func _on_timer_timeout() -> void:
-	if number_of_brains > 200:
+	if number_of_brains == 0:
 		brain_spawn_timer.stop()
 		return
 
@@ -178,7 +180,7 @@ func _on_timer_timeout() -> void:
 	add_child(brain)
 	move_child(brain, 7)
 
-	number_of_brains += 1
+	number_of_brains -= 1
 
 	brain.global_position = spawn_location.global_position
 
@@ -233,7 +235,7 @@ func outside_audio():
 	set_instrument_active("bass2", false)
 	set_instrument_active("guitar", false)
 
-	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 0)
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 0.5)
 	#rewind_score()
 
 
@@ -247,7 +249,7 @@ func _on_small_room_area_2d_body_entered(body: Node2D) -> void:
 	set_instrument_active("bass2", false)
 	set_instrument_active("guitar", false)
 
-	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 0.5)
 
 	#set_score_position(0)
 	#rewind_score()
@@ -263,7 +265,7 @@ func _on_medium_room_area_2d_body_entered(body: Node2D) -> void:
 	set_instrument_active("bass2", false)
 	set_instrument_active("guitar", false)
 
-	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1.0)
 
 
 func _on_large_room_area_2d_body_entered(body: Node2D) -> void:
@@ -277,13 +279,14 @@ func _on_large_room_area_2d_body_entered(body: Node2D) -> void:
 	set_instrument_active("guitar", true)
 
 	csound.send_control_channel("dirty_bass.ASynthLfo.1.lfo_freq", 2.479)
-	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 1)
+	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 0.5)
 
 
 func _on_enemy_area_2d_body_entered(body: Node2D) -> void:
-	brain_spawn_timer.start()
-
-	#update_tempo(360)
+	print (number_of_brains)
+	if number_of_brains > 0:
+		brain_spawn_timer.start()
+		update_tempo(360)
 
 
 func _on_player_brain_collision() -> void:
@@ -332,3 +335,7 @@ func _on_swap_area_2d_body_entered(body: Node2D) -> void:
 			space.show()
 		else:
 			button_r1.show()
+
+
+func _on_water_area_2d_body_entered(body: Node2D) -> void:
+	update_tempo(120)

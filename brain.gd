@@ -30,6 +30,9 @@ func _physics_process(delta):
 	if is_on_wall():
 		handle_collisions()
 
+	if position.y > 1000:
+		queue_free()
+
 
 func handle_collisions():
 	for index in get_slide_collision_count():

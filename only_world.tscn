@@ -6,17 +6,28 @@
 
 [node name="OnlyWorld" type="Node2D" unique_id=156107308]
 
-[node name="World" parent="." unique_id=2137336129 instance=ExtResource("1_330da")]
-input_enabled = true
-
-[node name="Player" parent="World" index="17" unique_id=1198168635]
-input_enabled = true
-
-[node name="Quetzalcoatl" parent="World" index="18" unique_id=6477618]
-movement_enabled = true
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=718084260]
 stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
 
-[editable path="World"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1486767772]
+offset_right = 1920.0
+offset_bottom = 1104.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=507859584]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override = Vector2i(640, 360)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="World" parent="SubViewportContainer/SubViewport" unique_id=2137336129 instance=ExtResource("1_330da")]
+
+[node name="Player" parent="SubViewportContainer/SubViewport/World" index="17" unique_id=1198168635]
+input_enabled = true
+
+[node name="Quetzalcoatl" parent="SubViewportContainer/SubViewport/World" index="18" unique_id=6477618]
+movement_enabled = true
+
+[editable path="SubViewportContainer/SubViewport/World"]

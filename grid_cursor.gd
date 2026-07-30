@@ -26,12 +26,20 @@ var jump: AnimatedSprite2D = $Jump
 @onready
 var shoot: AnimatedSprite2D = $Shoot
 
-var x: = 4
-var y: = 3
+var x: int = 4
+var y: int = 3
+var using_joystick: bool = false
 
 
 func _ready() -> void:
 	Input.use_accumulated_input = false
+
+
+func _input(input_event):
+	if input_event is InputEventJoypadButton:
+		using_joystick = true
+	if input_event is InputEventJoypadMotion:
+		using_joystick = true
 
 
 func _physics_process(delta):
@@ -59,9 +67,17 @@ func _physics_process(delta):
 		keys["jump"]  = true
 		jump.play()
 
+	if using_joystick:
+		keys.clear()
+		keys["left"]  = true
+		keys["right"]  = true
+		keys["up"]  = true
+		keys["down"]  = true
+		keys["shoot"]  = true
+		keys["jump"]  = true
+
 	if keys.size() == 6 and tutorial:
 		tutorial = false
-
 		up.hide()
 		down.hide()
 		left.hide()

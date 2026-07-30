@@ -80,6 +80,8 @@ func _ready():
 
 	csound = CsoundServer.get_csound("Main")
 
+	update_tempo(120)
+
 
 func _process(delta: float) -> void:
 	var position: float = 2 + ((int(player.position.x) % 128) / 128.0)
@@ -90,8 +92,7 @@ func _process(delta: float) -> void:
 
 func _input(event):
 	if event is InputEventKey and event.pressed: # and not event.is_echo():
-		if event.keycode == KEY_J:
-			using_keyboard = true
+		using_keyboard = true
 
 
 func _physics_process(delta):
@@ -281,10 +282,10 @@ func _on_large_room_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_enemy_area_2d_body_entered(body: Node2D) -> void:
-	for brain in brains.get_children():
-		brain.movement_enabled = true
-
-	update_tempo(360)
+	if body is Player:
+		for brain in brains.get_children():
+			brain.movement_enabled = true
+		update_tempo(360)
 
 
 func _on_player_brain_collision() -> void:

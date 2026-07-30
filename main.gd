@@ -29,6 +29,7 @@ var ui_visible: bool = false
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
 
+var using_keyboard: bool = false
 var finished: bool = false
 
 
@@ -140,6 +141,9 @@ func _input(input_event):
 		if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
 			csound_synth.note_off(0, midi_event.pitch)
 
+	if input_event is InputEventKey and input_event.pressed:
+		using_keyboard = true
+
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("toggle_ui"):
@@ -155,10 +159,12 @@ func _physics_process(delta):
 	label.text = "%d / 20" % [20 - count]
 
 	if count == 0 and not finished:
+		world.input_enabled = false
 		world.disable_audio()
 		world.player.input_enabled = true
 		world.quetzalcoatl.movement_enabled = false
 		world.quetzalcoatl.hide()
+		dirt_fill_grid.enabled = true
 		dirt_fill_grid.quetzalcoatl.movement_enabled = true
 		finished = true
 

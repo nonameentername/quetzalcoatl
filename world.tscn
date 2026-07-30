@@ -308,7 +308,7 @@ position = Vector2(4184, 536)
 shape = SubResource("RectangleShape2D_2o6r5")
 
 [node name="Player" parent="." unique_id=1198168635 instance=ExtResource("1_f3sb7")]
-position = Vector2(100, 670)
+position = Vector2(96, 672)
 collision_layer = 3
 high_jump_height = 150.0
 run_speed = 450.0

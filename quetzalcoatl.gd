@@ -10,6 +10,9 @@ var follow_path: PathFollow2D
 @export
 var movement_enabled: bool = false
 
+@export
+var number_segments = 10
+
 @onready
 var sprite: Sprite2D = $Head
 
@@ -25,7 +28,6 @@ var current_velocity: Vector2
 var direction_velocity: int = 20048
 var next_direction: Direction = Direction.RIGHT
 
-var number_segments = 10
 var segments: Array[QuetzalcoatlBody]
 
 

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3ofuqor8abad" path="res://world.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://addons/synths/amsynth.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://20usr2pqobs7" path="res://dig_and_puzzle.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bubb68drm2qri" path="res://dirt_fill_grid.tscn" id="4_lquwl"]
 
 [sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jkhly"]
 
@@ -23,6 +24,17 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="World" parent="SubViewportContainer/SubViewport" unique_id=2137336129 instance=ExtResource("1_ig7tw")]
+
+[node name="Label" type="Label" parent="." unique_id=1800113039]
+offset_left = 842.0
+offset_top = 16.0
+offset_right = 1125.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 72
+text = "0 / 20"
+horizontal_alignment = 2
+
+[node name="DirtFillGrid" parent="." unique_id=1839308908 instance=ExtResource("4_lquwl")]
 
 [node name="DigAndPuzzle" parent="." unique_id=1200984853 instance=ExtResource("3_h2yge")]
 position = Vector2(0, 648)
@@ -76,18 +88,10 @@ csound_name = "Main"
 stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
 
-[node name="Label" type="Label" parent="." unique_id=1800113039]
-offset_left = 842.0
-offset_top = 16.0
-offset_right = 1125.0
-offset_bottom = 115.0
-theme_override_font_sizes/font_size = 72
-text = "0 / 20"
-horizontal_alignment = 2
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1018468976]
 position = Vector2(576, 972)
 
+[connection signal="finished" from="DirtFillGrid" to="." method="_on_dirt_fill_grid_finished"]
 [connection signal="dig_finished" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_dig_finished"]
 [connection signal="solved" from="DigAndPuzzle" to="." method="_on_dig_and_puzzle_solved"]
 [connection signal="item_selected" from="Panel/OptionButton" to="." method="_on_option_button_item_selected"]

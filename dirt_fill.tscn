@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dqx6dsa7j6e7g"]
+
+[ext_resource type="Script" uid="uid://cc4km7b6o8f33" path="res://dirt_fill.gd" id="1_j6w2v"]
+[ext_resource type="Texture2D" uid="uid://cmt4n7cbr8wo3" path="res://dirt.png" id="1_t85t4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6w2v"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03ge8"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orwj1"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkdgh"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyuf3"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le0qq"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1yds"]
+atlas = ExtResource("1_t85t4")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkhly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6w2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03ge8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orwj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkdgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyuf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le0qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1yds")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(128, 128)
+
+[node name="DirtFill" type="Area2D" unique_id=1547634111]
+script = ExtResource("1_j6w2v")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=424408867]
+visible = false
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=849258367]
+sprite_frames = SubResource("SpriteFrames_jkhly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1269638984]
+shape = SubResource("RectangleShape2D_jkhly")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

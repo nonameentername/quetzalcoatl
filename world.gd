@@ -78,6 +78,8 @@ func _ready():
 	set_instrument_active("space", false)
 	set_instrument_active("bass2", false)
 
+	csound = CsoundServer.get_csound("Main")
+
 
 func _process(delta: float) -> void:
 	var position: float = 2 + ((int(player.position.x) % 128) / 128.0)
@@ -222,6 +224,17 @@ func outside_audio():
 
 	csound.send_control_channel("dirty_bass.ASynthRender.1.master_vol", 0.5)
 	#rewind_score()
+
+
+func disable_audio():
+	set_instrument_active("atmosphere", false)
+	set_instrument_active("ambience", false)
+	set_instrument_active("space", false)
+	set_instrument_active("dirty_bass", false)
+	set_instrument_active("drums", false)
+	set_instrument_active("bass1", false)
+	set_instrument_active("bass2", false)
+	set_instrument_active("guitar", false)
 
 
 func _on_small_room_area_2d_body_entered(body: Node2D) -> void:

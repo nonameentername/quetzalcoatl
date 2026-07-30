@@ -22,16 +22,21 @@ var dig_and_puzzle: DigAndPuzzle = $DigAndPuzzle
 @onready
 var label: Label = $Label
 
+@onready
+var dirt_fill_grid: Node2D = $DirtFillGrid
+
 var ui_visible: bool = false
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
+
+var finished: bool = false
 
 
 func _ready() -> void:
 	CsoundServer.csound_ready.connect(_on_csound_ready)
 
-	OS.open_midi_inputs()
-	print(OS.get_connected_midi_inputs())
+	#OS.open_midi_inputs()
+	#print(OS.get_connected_midi_inputs())
 
 	csound_parameters = [
 		"ASynthOsc.1.osc_waveform",
@@ -82,6 +87,8 @@ func _ready() -> void:
 	for i in popup_menu.get_item_count():
 		if popup_menu.is_item_radio_checkable(i):
 			popup_menu.set_item_as_radio_checkable(i, false)
+
+	csound_synth = CsoundServer.get_csound("Main")
 
 
 func _on_csound_ready(name: String):
@@ -147,6 +154,14 @@ func _physics_process(delta):
 
 	label.text = "%d / 20" % [20 - count]
 
+	if count == 0 and not finished:
+		world.disable_audio()
+		world.player.input_enabled = true
+		world.quetzalcoatl.movement_enabled = false
+		world.quetzalcoatl.hide()
+		dirt_fill_grid.quetzalcoatl.movement_enabled = true
+		finished = true
+
 
 func _on_amsynth_parameter_changed(parameter: int, value: float) -> void:
 	var parameter_name = get_parameter_name(option_button.text, parameter)
@@ -186,8 +201,10 @@ func _on_dig_and_puzzle_solved() -> void:
 
 	await get_tree().create_timer(2.0).timeout
 
-	camera.queue_free()
-	dig_and_puzzle.queue_free()
+	#camera.queue_free()
+	#dig_and_puzzle.queue_free()
+	camera.hide()
+	dig_and_puzzle.hide()
 
 	option_button.selected = 0
 	amsynth.load_preset("res://presets/dirt.json")
@@ -196,3 +213,7 @@ func _on_dig_and_puzzle_solved() -> void:
 	world.quetzalcoatl.movement_enabled = true
 
 	world.outside_audio()
+
+
+func _on_dirt_fill_grid_finished() -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://main.tscn")

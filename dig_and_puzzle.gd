@@ -26,6 +26,7 @@ signal solved
 
 func _ready() -> void:
 	CsoundServer.csound_ready.connect(_on_csound_ready)
+	csound_synth = CsoundServer.get_csound("Main")
 
 
 func _on_csound_ready(name: String):

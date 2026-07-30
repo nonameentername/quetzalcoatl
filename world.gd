@@ -13,18 +13,12 @@ var input_enabled: bool:
 		if player:
 			player.input_enabled = value
 		if quetzalcoatl:
-			quetzalcoatl.movement_enabled = true
+			quetzalcoatl.movement_enabled = value
 	get():
 		return input_enabled
 
 @onready
-var brain_spawn_timer: Timer = $SpawnTimer
-
-@onready
 var glitch_cooldown_timer: Timer = $GlitchTimer
-
-@onready
-var spawn_location: PathFollow2D = $SpawnPath/SpawnLocation
 
 @onready
 var shader: ColorRect = $Shader
@@ -33,7 +27,10 @@ var shader: ColorRect = $Shader
 var player: Player = $Player
 
 @onready
-var quetzalcoatl : Quetzalcoatl = $Quetzalcoatl
+var quetzalcoatl: Quetzalcoatl = $Quetzalcoatl
+
+@onready
+var brains: Node2D = $Brains
 
 @onready
 var tile_map1: TileMapLayer = $TileMapLayer1
@@ -53,7 +50,6 @@ var space: AnimatedSprite2D = $Space
 @onready
 var button_r1: AnimatedSprite2D = $R1
 
-var number_of_brains = 20
 var allow_glitch: bool = true
 
 var control_tweens: Dictionary = {}
@@ -159,30 +155,19 @@ func _physics_process(delta):
 			0.2
 		)
 
+	var count: int = 0
+	for brain in brains.get_children():
+		if brain.process_mode != Node.PROCESS_MODE_DISABLED:
+			count += 1
+
+	if count == 0:
+		#TODO: add ending
 		update_tempo(120)
 
 
 func _on_csound_ready(name: String):
 	if name == "Main":
 		csound = CsoundServer.get_csound(name)
-		#csound.event_string('#include "music.sco"')
-
-
-func _on_timer_timeout() -> void:
-	if number_of_brains == 0:
-		brain_spawn_timer.stop()
-		return
-
-	spawn_location.progress_ratio = random.randf()
-	
-	var brain: Node2D = brain_scene.instantiate()
-	
-	add_child(brain)
-	move_child(brain, 7)
-
-	number_of_brains -= 1
-
-	brain.global_position = spawn_location.global_position
 
 
 func update_tempo(value):
@@ -283,10 +268,10 @@ func _on_large_room_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_enemy_area_2d_body_entered(body: Node2D) -> void:
-	print (number_of_brains)
-	if number_of_brains > 0:
-		brain_spawn_timer.start()
-		update_tempo(360)
+	for brain in brains.get_children():
+		brain.movement_enabled = true
+
+	update_tempo(360)
 
 
 func _on_player_brain_collision() -> void:
@@ -338,4 +323,4 @@ func _on_swap_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_water_area_2d_body_entered(body: Node2D) -> void:
-	update_tempo(120)
+	pass

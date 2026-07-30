@@ -76,6 +76,15 @@ csound_name = "Main"
 stream = SubResource("AudioStreamCsound_jkhly")
 autoplay = true
 
+[node name="Label" type="Label" parent="." unique_id=1800113039]
+offset_left = 842.0
+offset_top = 16.0
+offset_right = 1125.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 72
+text = "0 / 20"
+horizontal_alignment = 2
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1018468976]
 position = Vector2(576, 972)
 

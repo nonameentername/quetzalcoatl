@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgy6kxwudoero"]
 
 [ext_resource type="Script" uid="uid://b45uvoxjny1rq" path="res://brain.gd" id="1_4w5wn"]
-[ext_resource type="Texture2D" uid="uid://deaxnyasgn8da" path="res://bloob.png" id="1_42xjx"]
+[ext_resource type="Texture2D" uid="uid://ddci0kop0738c" path="res://bloob.png" id="1_42xjx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4w5wn"]
 atlas = ExtResource("1_42xjx")
@@ -28,7 +28,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w5wn"]
 size = Vector2(32, 16)
 
-[node name="Node2D" type="CharacterBody2D" unique_id=625299191]
+[node name="Brain" type="CharacterBody2D" unique_id=625299191]
 script = ExtResource("1_4w5wn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=673355001]
@@ -37,3 +37,5 @@ frame_progress = 0.48711112
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1878317848]
 shape = SubResource("RectangleShape2D_4w5wn")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=77741018]

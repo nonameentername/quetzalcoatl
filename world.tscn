@@ -58,12 +58,6 @@ texture = ExtResource("3_036b0")
 [sub_resource type="TileSet" id="TileSet_dwbse"]
 sources/2 = SubResource("TileSetAtlasSource_036b0")
 
-[sub_resource type="Curve2D" id="Curve2D_pkg7o"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 5738.2515, 35.60919, 0, 0, 0, 0, 7633.559, 35.60919)
-}
-point_count = 2
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ioo17"]
 shader = ExtResource("8_gbfbk")
 shader_parameter/pixelation = 0.0010000000475
@@ -188,19 +182,70 @@ modulate = Color(1, 1, 1, 0.46666667)
 tile_map_data = PackedByteArray("AACZACgAAgAAAAEAAACaACgAAgABAAEAAACbACgAAgACAAEAAACcACgAAgADAAEAAACdACgAAgAAAAEAAACeACgAAgABAAEAAACfACgAAgACAAEAAACgACgAAgADAAEAAAChACgAAgAAAAEAAACiACgAAgABAAEAAACjACgAAgACAAEAAACkACgAAgADAAEAAAClACgAAgAAAAEAAACmACgAAgABAAEAAACnACgAAgACAAEAAACoACgAAgADAAEAAACpACgAAgAAAAEAAACqACgAAgABAAEAAACrACgAAgACAAEAAACsACgAAgADAAEAAACtACgAAgAAAAEAAACuACgAAgABAAEAAACvACgAAgACAAEAAACwACgAAgADAAEAAACxACgAAgAAAAEAAACyACgAAgABAAEAAACzACgAAgACAAEAAAC0ACgAAgADAAEAAAC1ACgAAgAAAAEAAACZACkAAgAAAAQAAACaACkAAgABAAQAAACbACkAAgACAAQAAACcACkAAgADAAQAAACZACoAAgAAAAQAAACaACoAAgABAAQAAACbACoAAgACAAQAAACcACoAAgADAAQAAACZACsAAgAAAAQAAACaACsAAgABAAQAAACbACsAAgACAAQAAACcACsAAgADAAQAAACZACwAAgAAAAQAAACaACwAAgABAAQAAACbACwAAgACAAQAAACcACwAAgADAAQAAACdACkAAgAAAAQAAACeACkAAgABAAQAAACfACkAAgACAAQAAACgACkAAgADAAQAAACdACoAAgAAAAQAAACeACoAAgABAAQAAACfACoAAgACAAQAAACgACoAAgADAAQAAACdACsAAgAAAAQAAACeACsAAgABAAQAAACfACsAAgACAAQAAACgACsAAgADAAQAAACdACwAAgAAAAQAAACeACwAAgABAAQAAACfACwAAgACAAQAAACgACwAAgADAAQAAAChACkAAgAAAAQAAACiACkAAgABAAQAAACjACkAAgACAAQAAACkACkAAgADAAQAAAChACoAAgAAAAQAAACiACoAAgABAAQAAACjACoAAgACAAQAAACkACoAAgADAAQAAAChACsAAgAAAAQAAACiACsAAgABAAQAAACjACsAAgACAAQAAACkACsAAgADAAQAAAChACwAAgAAAAQAAACiACwAAgABAAQAAACjACwAAgACAAQAAACkACwAAgADAAQAAAClACkAAgAAAAQAAACmACkAAgABAAQAAACnACkAAgACAAQAAACoACkAAgADAAQAAAClACoAAgAAAAQAAACmACoAAgABAAQAAACnACoAAgACAAQAAACoACoAAgADAAQAAAClACsAAgAAAAQAAACmACsAAgABAAQAAACnACsAAgACAAQAAACoACsAAgADAAQAAAClACwAAgAAAAQAAACmACwAAgABAAQAAACnACwAAgACAAQAAACoACwAAgADAAQAAACpACkAAgAAAAQAAACqACkAAgABAAQAAACrACkAAgACAAQAAACsACkAAgADAAQAAACpACoAAgAAAAQAAACqACoAAgABAAQAAACrACoAAgACAAQAAACsACoAAgADAAQAAACpACsAAgAAAAQAAACqACsAAgABAAQAAACrACsAAgACAAQAAACsACsAAgADAAQAAACpACwAAgAAAAQAAACqACwAAgABAAQAAACrACwAAgACAAQAAACsACwAAgADAAQAAACtACkAAgAAAAQAAACuACkAAgABAAQAAACvACkAAgACAAQAAACwACkAAgADAAQAAACtACoAAgAAAAQAAACuACoAAgABAAQAAACvACoAAgACAAQAAACwACoAAgADAAQAAACtACsAAgAAAAQAAACuACsAAgABAAQAAACvACsAAgACAAQAAACwACsAAgADAAQAAACtACwAAgAAAAQAAACuACwAAgABAAQAAACvACwAAgACAAQAAACwACwAAgADAAQAAACxACkAAgAAAAQAAACyACkAAgABAAQAAACzACkAAgACAAQAAAC0ACkAAgADAAQAAACxACoAAgAAAAQAAACyACoAAgABAAQAAACzACoAAgACAAQAAAC0ACoAAgADAAQAAACxACsAAgAAAAQAAACyACsAAgABAAQAAACzACsAAgACAAQAAAC0ACsAAgADAAQAAACxACwAAgAAAAQAAACyACwAAgABAAQAAACzACwAAgACAAQAAAC0ACwAAgADAAQAAAC1ACkAAgAAAAQAAAC1ACoAAgAAAAQAAAC1ACsAAgAAAAQAAAC1ACwAAgAAAAQAAAA=")
 tile_set = SubResource("TileSet_dwbse")
 
-[node name="SpawnPath" type="Path2D" parent="." unique_id=500890858]
-position = Vector2(67.81129, 314.60672)
-scale = Vector2(0.53869873, 0.46036586)
-curve = SubResource("Curve2D_pkg7o")
-
-[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath" unique_id=156511442]
-position = Vector2(5738.2515, 35.60919)
-
-[node name="SpawnTimer" type="Timer" parent="." unique_id=55226664]
-wait_time = 0.05
-
 [node name="GlitchTimer" type="Timer" parent="." unique_id=60546274]
 wait_time = 0.4
+
+[node name="Brains" type="Node2D" parent="." unique_id=768975191]
+
+[node name="Brain" parent="Brains" unique_id=625299191 instance=ExtResource("2_pkg7o")]
+position = Vector2(4192, 312)
+
+[node name="Brain2" parent="Brains" unique_id=1772941566 instance=ExtResource("2_pkg7o")]
+position = Vector2(4256, 312)
+
+[node name="Brain3" parent="Brains" unique_id=426343365 instance=ExtResource("2_pkg7o")]
+position = Vector2(4288, 312)
+
+[node name="Brain4" parent="Brains" unique_id=1530866069 instance=ExtResource("2_pkg7o")]
+position = Vector2(4224, 312)
+
+[node name="Brain5" parent="Brains" unique_id=170621775 instance=ExtResource("2_pkg7o")]
+position = Vector2(4160, 312)
+
+[node name="Brain6" parent="Brains" unique_id=1905729216 instance=ExtResource("2_pkg7o")]
+position = Vector2(4128, 312)
+
+[node name="Brain7" parent="Brains" unique_id=1240720488 instance=ExtResource("2_pkg7o")]
+position = Vector2(3872, 312)
+
+[node name="Brain8" parent="Brains" unique_id=853379238 instance=ExtResource("2_pkg7o")]
+position = Vector2(3904, 312)
+
+[node name="Brain9" parent="Brains" unique_id=1664795646 instance=ExtResource("2_pkg7o")]
+position = Vector2(3936, 312)
+
+[node name="Brain10" parent="Brains" unique_id=407921743 instance=ExtResource("2_pkg7o")]
+position = Vector2(3968, 312)
+
+[node name="Brain11" parent="Brains" unique_id=1039964999 instance=ExtResource("2_pkg7o")]
+position = Vector2(3872, 328)
+
+[node name="Brain12" parent="Brains" unique_id=14210395 instance=ExtResource("2_pkg7o")]
+position = Vector2(3904, 328)
+
+[node name="Brain13" parent="Brains" unique_id=1414140066 instance=ExtResource("2_pkg7o")]
+position = Vector2(3936, 328)
+
+[node name="Brain14" parent="Brains" unique_id=965913784 instance=ExtResource("2_pkg7o")]
+position = Vector2(3968, 328)
+
+[node name="Brain15" parent="Brains" unique_id=1734043940 instance=ExtResource("2_pkg7o")]
+position = Vector2(4128, 328)
+
+[node name="Brain16" parent="Brains" unique_id=1099479135 instance=ExtResource("2_pkg7o")]
+position = Vector2(4160, 328)
+
+[node name="Brain17" parent="Brains" unique_id=2068555250 instance=ExtResource("2_pkg7o")]
+position = Vector2(4192, 328)
+
+[node name="Brain18" parent="Brains" unique_id=1278296552 instance=ExtResource("2_pkg7o")]
+position = Vector2(4224, 328)
+
+[node name="Brain19" parent="Brains" unique_id=891817577 instance=ExtResource("2_pkg7o")]
+position = Vector2(4256, 328)
+
+[node name="Brain20" parent="Brains" unique_id=796895670 instance=ExtResource("2_pkg7o")]
+position = Vector2(4288, 328)
 
 [node name="Shader" type="ColorRect" parent="." unique_id=1989741648]
 material = SubResource("ShaderMaterial_ioo17")
@@ -212,6 +257,7 @@ offset_right = 4360.0
 offset_bottom = 736.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="OutsideArea2D" type="Area2D" parent="." unique_id=303578421]
 visible = false
@@ -316,7 +362,6 @@ sprite_frames = SubResource("SpriteFrames_jkhly")
 autoplay = "default"
 frame_progress = 0.96514755
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="GlitchTimer" to="." method="_on_glitch_timer_timeout"]
 [connection signal="body_entered" from="OutsideArea2D" to="." method="_on_outside_area_2d_body_entered"]
 [connection signal="body_entered" from="SmallRoomArea2D" to="." method="_on_small_room_area_2d_body_entered"]

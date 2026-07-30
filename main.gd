@@ -19,6 +19,9 @@ var camera: Camera2D = $Camera2D
 @onready
 var dig_and_puzzle: DigAndPuzzle = $DigAndPuzzle
 
+@onready
+var label: Label = $Label
+
 var ui_visible: bool = false
 var csound_synth: CsoundInstance
 var csound_parameters: Array[String]
@@ -135,6 +138,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("toggle_ui"):
 		ui_visible = not ui_visible
 		ui.visible = ui_visible
+
+	#TODO: remove duplicate code
+	var count: int = 0
+	for brain in world.brains.get_children():
+		if brain.process_mode != Node.PROCESS_MODE_DISABLED:
+			count += 1
+
+	label.text = "%d / 20" % [20 - count]
 
 
 func _on_amsynth_parameter_changed(parameter: int, value: float) -> void:

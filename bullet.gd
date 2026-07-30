@@ -41,7 +41,8 @@ func _physics_process(delta):
 			queue_free()
 
 			if collider:
-				collider.free()
+				collider.process_mode = Node.PROCESS_MODE_DISABLED
+				collider.hide()
 		else:
 			await get_tree().create_timer(1.0).timeout
 			queue_free()

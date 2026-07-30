@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d4gp0k3ejauud"]
+
+[ext_resource type="PackedScene" uid="uid://bgy6kxwudoero" path="res://brain.tscn" id="1_gake6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gake6"]
+size = Vector2(1408, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62f3x"]
+size = Vector2(64, 64)
+
+[node name="OnlyBrain" type="Node2D" unique_id=1735493137]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=9767360]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1314775744]
+position = Vector2(576, 312)
+shape = SubResource("RectangleShape2D_gake6")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=221786210]
+offset_left = -128.0
+offset_top = 280.0
+offset_right = 1280.0
+offset_bottom = 344.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=137156850]
+position = Vector2(192, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1361519097]
+position = Vector2(-96, 312)
+shape = SubResource("RectangleShape2D_62f3x")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=88451135]
+offset_left = -128.0
+offset_top = 280.0
+offset_right = -64.0
+offset_bottom = 344.0
+
+[node name="Brain" parent="." unique_id=625299191 instance=ExtResource("1_gake6")]
+position = Vector2(80, 208)

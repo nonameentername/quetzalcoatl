@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Quetzalcoatl
 
+const FLIP_THRESHOLD := 0.01
+
 
 var body_scene: PackedScene
 
@@ -68,7 +70,11 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 
 	sprite.rotation = head_direction.angle()
-	sprite.flip_v = head_direction.x < 0
+
+	if head_direction.x < -FLIP_THRESHOLD:
+		sprite.flip_v = true
+	elif head_direction.x > FLIP_THRESHOLD:
+		sprite.flip_v = false
 
 	# Body segments
 	for index in range(segments.size()):

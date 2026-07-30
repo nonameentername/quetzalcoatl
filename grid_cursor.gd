@@ -26,6 +26,9 @@ var jump: AnimatedSprite2D = $Jump
 @onready
 var shoot: AnimatedSprite2D = $Shoot
 
+var x: = 4
+var y: = 3
+
 
 func _ready() -> void:
 	Input.use_accumulated_input = false
@@ -69,18 +72,25 @@ func _physics_process(delta):
 	if tutorial:
 		return
 
+	position.x = 128 * x
+	position.y = 128 * y
+
 	var end: Vector2
 
 	if Input.is_action_just_pressed("left"):
+		x = clamp(x - 1, 0, 8)
 		end = Vector2(position.x - 128, position.y)
 		tween_position(end)
 	elif Input.is_action_just_pressed("right"):
+		x = clamp(x + 1, 0, 8)
 		end = Vector2(position.x + 128, position.y)
 		tween_position(end)
 	elif Input.is_action_just_pressed("up"):
+		y = clamp(y - 1, 0, 4)
 		end = Vector2(position.x, position.y - 128)
 		tween_position(end)
 	elif Input.is_action_just_pressed("down"):
+		y = clamp(y + 1, 0, 4)
 		end = Vector2(position.x, position.y + 128)
 		tween_position(end)
 

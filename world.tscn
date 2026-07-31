@@ -188,7 +188,7 @@ wait_time = 0.4
 [node name="Brains" type="Node2D" parent="." unique_id=768975191]
 
 [node name="Brain" parent="Brains" unique_id=625299191 instance=ExtResource("2_pkg7o")]
-position = Vector2(4192, 312)
+position = Vector2(480, 696)
 
 [node name="Brain2" parent="Brains" unique_id=1772941566 instance=ExtResource("2_pkg7o")]
 position = Vector2(4256, 312)
@@ -206,7 +206,7 @@ position = Vector2(4160, 312)
 position = Vector2(4128, 312)
 
 [node name="Brain7" parent="Brains" unique_id=1240720488 instance=ExtResource("2_pkg7o")]
-position = Vector2(3872, 312)
+position = Vector2(4192, 312)
 
 [node name="Brain8" parent="Brains" unique_id=853379238 instance=ExtResource("2_pkg7o")]
 position = Vector2(3904, 312)
@@ -246,9 +246,6 @@ position = Vector2(4256, 328)
 
 [node name="Brain20" parent="Brains" unique_id=796895670 instance=ExtResource("2_pkg7o")]
 position = Vector2(4288, 328)
-
-[node name="Brain" parent="." unique_id=1770610038 instance=ExtResource("2_pkg7o")]
-position = Vector2(456, 696)
 
 [node name="Shader" type="ColorRect" parent="." unique_id=1989741648]
 material = SubResource("ShaderMaterial_ioo17")

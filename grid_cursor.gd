@@ -27,7 +27,7 @@ var jump: AnimatedSprite2D = $Jump
 var shoot: AnimatedSprite2D = $Shoot
 
 var x: int = 4
-var y: int = 3
+var y: int = 2
 var using_joystick: bool = false
 
 
@@ -84,6 +84,8 @@ func _physics_process(delta):
 		right.hide()
 		jump.hide()
 		shoot.hide()
+
+		return
 
 	if tutorial:
 		return

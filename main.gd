@@ -94,7 +94,6 @@ func _ready() -> void:
 
 func _on_csound_ready(name: String):
 	if name == "Main":
-		print ("_on_csound_ready")
 		csound_synth = CsoundServer.get_csound(name)
 		#active_instrument = "synth"
 		option_button.selected = 0

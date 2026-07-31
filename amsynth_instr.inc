@@ -30,7 +30,21 @@ endin
 instr $INSTRUMENT_NAME._mixer
 	SInstrName = "$INSTRUMENT_NAME"
 	SInstrMixer = "$INSTRUMENT_NAME._mixer"
-	ASynthEffects SInstrName, SInstrMixer
+
+    iNum = 1
+
+    aSendL, aSendR ASynthMixerReceive SInstrName, SInstrMixer
+    aSendL, aSendR ASynthOverDrive SInstrName, iNum, aSendL, aSendR
+    aSendL, aSendR ASynthReverb SInstrName, iNum, aSendL, aSendR
+
+    aClipL clip aSendL, 0, 0.9
+    aClipR clip aSendR, 0, 0.9
+
+    chnset aSendL, "$INSTRUMENT_NAME._left_channel"
+    chnset aSendR, "$INSTRUMENT_NAME._right_channel"
+
+    ;outs aSendL, aSendR
+    clear aSendL, aSendR
 endin
 
 maxalloc "$INSTRUMENT_NAME", 8, 1

@@ -17,6 +17,7 @@ chnset 0, "play_dirty_bass"
 chnset 0, "play_atmosphere"
 chnset 0, "play_ambience"
 chnset 0, "play_space"
+chnset 24, "bit_depth"
 
 massign 0, 0
 
@@ -149,6 +150,65 @@ instr update_tempo, 100
   chnset kCurrentTime, "time"
 endin
 
+
+opcode Bitcrush, a, akk
+  ain, kbit, ksrate xin
+
+  klevels = 2^kbit
+  aout = int(ain * klevels) / klevels
+  kfold = max(1, sr / ksrate)
+  aout fold aout, kfold
+
+  xout aout
+endop
+
+
+instr mixer, 10000
+  aSynthLeft chnget "synth_left_channel"
+  aSynthRight chnget "synth_right_channel"
+
+  aGuitarLeft chnget "guitar_left_channel"
+  aGuitarRight chnget "guitar_right_channel"
+
+  aBass1Left chnget "bass1_left_channel"
+  aBass1Right chnget "bass1_right_channel"
+
+  aDirtyBassLeft chnget "dirty_bass_left_channel"
+  aDirtyBassRight chnget "dirty_bass_right_channel"
+
+  aAtmosphereLeft chnget "atmosphere_left_channel"
+  aAtmosphereRight chnget "atmosphere_right_channel"
+
+  aAmbienceLeft chnget "ambience_left_channel"
+  aAmbienceRight chnget "ambience_right_channel"
+
+  aSpaceLeft chnget "space_left_channel"
+  aSpaceRight chnget "space_right_channel"
+
+  aBass2Left chnget "bass2_left_channel"
+  aBass2Right chnget "bass2_right_channel"
+
+  aJumpLeft chnget "jump_left_channel"
+  aJumpRight chnget "jump_right_channel"
+
+  aShootLeft chnget "shoot_left_channel"
+  aShootRight chnget "shoot_right_channel"
+
+  aSwapLeft chnget "swap_left_channel"
+  aSwapRight chnget "swap_right_channel"
+
+  aLeft = aSynthLeft + aGuitarLeft + aBass1Left + aDirtyBassLeft + aAtmosphereLeft + aAmbienceLeft + aSpaceLeft + aBass2Left + aJumpLeft + aShootLeft + aSwapLeft
+  aRight = aGuitarRight + aSynthRight + aBass1Right + aDirtyBassRight + aAtmosphereRight + aAmbienceRight + aSpaceRight + aBass2Right + aJumpRight + aShootRight + aSwapRight
+
+  kBitDepth init 24
+  kBitDepth chnget "bit_depth"
+
+  aLeft Bitcrush aLeft, kBitDepth, 48000
+  aRight Bitcrush aRight, kBitDepth, 48000
+
+  outs aLeft, aRight
+endin
+
 massign 0, 0
 ;massign 0, "dirty_bass_midi"
 
@@ -167,6 +227,7 @@ i "bass2_mixer" 0 -1
 i "jump_mixer" 0 -1
 i "shoot_mixer" 0 -1
 i "swap_mixer" 0 -1
+i "mixer" 0 -1
 
 #include "music.sco"
 

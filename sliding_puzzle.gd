@@ -20,7 +20,7 @@ func _ready() -> void:
 	for i in range(0, 9):
 		numbers.append(i)
 
-	#numbers.shuffle()
+	numbers.shuffle()
 
 	while not is_solvable(numbers):
 		numbers.shuffle()
@@ -29,8 +29,8 @@ func _ready() -> void:
 		if puzzle_piece is PuzzlePiece:
 			puzzle_pieces.append(puzzle_piece)
 
-	#for i in range(0, 8):
-	#	puzzle_pieces[i].position = calculate_position(numbers, i + 1)
+	for i in range(0, 8):
+		puzzle_pieces[i].position = calculate_position(numbers, i + 1)
 
 	update_puzzle_pieces()
 
@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 	if is_solved and not finished:
 		finished = true
 		solved.emit()
-		print ("solved")
 
 
 func update_puzzle_pieces():			

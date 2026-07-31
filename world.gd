@@ -57,6 +57,8 @@ var control_tweens: Dictionary = {}
 var tempo_tween: Tween
 var current_tempo = 120
 
+var bit_depth_tween: Tween
+
 var csound: CsoundInstance
 
 var synth_active = {}
@@ -302,6 +304,15 @@ func _on_player_brain_collision() -> void:
 		func(value): shader.material.set_shader_parameter("pixelation", value),
 		0.1,
 		0.001,
+		0.2
+	)
+
+	var bit_depth_tween = get_tree().create_tween()
+
+	bit_depth_tween.tween_method(
+		func(value): csound.send_control_channel("bit_depth", value),
+		1,
+		24,
 		0.2
 	)
 

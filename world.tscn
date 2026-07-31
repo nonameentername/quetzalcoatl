@@ -247,6 +247,9 @@ position = Vector2(4256, 328)
 [node name="Brain20" parent="Brains" unique_id=796895670 instance=ExtResource("2_pkg7o")]
 position = Vector2(4288, 328)
 
+[node name="Brain" parent="." unique_id=1770610038 instance=ExtResource("2_pkg7o")]
+position = Vector2(456, 696)
+
 [node name="Shader" type="ColorRect" parent="." unique_id=1989741648]
 material = SubResource("ShaderMaterial_ioo17")
 anchors_preset = 15

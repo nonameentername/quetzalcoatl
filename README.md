@@ -4,7 +4,7 @@ A game created for **VelociCode 2026**, San Antonio’s month-long game jam.
 
 The theme for this year’s jam is **Fossil**. This project uses [Megatroid](https://github.com/nonameentername/gba-games), one of my earlier games, as its “fossil.”
 
-This Godot project uses [godot-csound](https://github.com/nonameentername/godot-csound/).
+This Godot project uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-synths](https://github.com/nonameentername/godot-synths/).
 
 **[Play Quetzalcoatl in your browser](https://nonameentername.github.io/quetzalcoatl/index.html)**
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://eh21bpqs1jx1"]
+
+[ext_resource type="PackedScene" uid="uid://cwav1ii7llhcf" path="res://fossil_dig_piece.tscn" id="1_rds6y"]
+
+[node name="OnlyDigPiece" type="Node2D" unique_id=1801556430]
+
+[node name="FossilDigPiece" parent="." unique_id=366633420 instance=ExtResource("1_rds6y")]
+position = Vector2(320, 192)

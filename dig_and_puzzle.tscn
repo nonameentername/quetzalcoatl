@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://20usr2pqobs7"]
+
+[ext_resource type="PackedScene" uid="uid://cld2s5j6txgq8" path="res://sliding_puzzle.tscn" id="1_0jkah"]
+[ext_resource type="Script" uid="uid://d2fjpvovcv6lt" path="res://dig_and_puzzle.gd" id="1_vuq76"]
+[ext_resource type="Texture2D" uid="uid://c6lsutfme54te" path="res://dirt0.png" id="2_gemd6"]
+[ext_resource type="PackedScene" uid="uid://l4f731bs60eg" path="res://fossil_dig_grid.tscn" id="2_vuq76"]
+[ext_resource type="PackedScene" uid="uid://b5u602h7ujwx0" path="res://grid_cursor.tscn" id="5_e75yl"]
+
+[sub_resource type="Environment" id="Environment_jkhly"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 8.0
+glow_hdr_threshold = 1.01
+glow_hdr_scale = 0.0
+
+[node name="DigAndPuzzle" type="Node2D" unique_id=1200984853]
+script = ExtResource("1_vuq76")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=594593817]
+texture_repeat = 2
+position = Vector2(640, 384)
+texture = ExtResource("2_gemd6")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 768)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1784311281]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 512.0
+mouse_filter = 2
+color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+
+[node name="SlidingPuzzle" parent="." unique_id=682491742 instance=ExtResource("1_0jkah")]
+position = Vector2(448, 192)
+input_enabled = true
+
+[node name="FossilDigGrid" parent="." unique_id=1805141599 instance=ExtResource("2_vuq76")]
+position = Vector2(448, 192)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=145730073]
+environment = SubResource("Environment_jkhly")
+
+[node name="GridCursor" parent="." unique_id=534375161 instance=ExtResource("5_e75yl")]
+position = Vector2(512, 256)
+
+[node name="Label" type="Label" parent="." unique_id=1961793380]
+offset_left = 984.0
+offset_top = 16.0
+offset_right = 1132.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 72
+text = "0 / 6"
+
+[connection signal="dig_finished" from="." to="GridCursor" method="_on_dig_and_puzzle_dig_finished"]
+[connection signal="solved" from="SlidingPuzzle" to="." method="_on_sliding_puzzle_solved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece1" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece2" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece3" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece4" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece5" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece6" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece7" to="." method="_on_puzzle_piece_moved"]
+[connection signal="moved" from="SlidingPuzzle/PuzzlePiece8" to="." method="_on_puzzle_piece_moved"]
+[connection signal="dig_finished" from="FossilDigGrid" to="." method="_on_fossil_dig_grid_dig_finished"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece1" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece2" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece3" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece4" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece5" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece6" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece7" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece8" to="." method="_on_fossil_dig_piece_clearing"]
+[connection signal="clearing" from="FossilDigGrid/FossilDigPiece9" to="." method="_on_fossil_dig_piece_clearing"]
+
+[editable path="SlidingPuzzle"]
+[editable path="FossilDigGrid"]

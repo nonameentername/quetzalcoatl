@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bv5sljmrc8ods"]
+
+[ext_resource type="Script" uid="uid://q4swrlo6kje4" path="res://quetzalcoatl.gd" id="1_7ifkq"]
+[ext_resource type="Texture2D" uid="uid://cxoasq2xkpqq6" path="res://head.png" id="2_7ifkq"]
+[ext_resource type="PackedScene" uid="uid://sfnjia2bqiju" path="res://quetzalcoatl_tail.tscn" id="2_sp7ol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(64, 64)
+
+[node name="Quetzalcoatl" type="CharacterBody2D" unique_id=6477618]
+collision_mask = 32768
+motion_mode = 1
+script = ExtResource("1_7ifkq")
+
+[node name="Tail" parent="." unique_id=807828267 instance=ExtResource("2_sp7ol")]
+
+[node name="Head" type="Sprite2D" parent="." unique_id=887083659]
+texture = ExtResource("2_7ifkq")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=981268161]
+shape = SubResource("RectangleShape2D_jkhly")

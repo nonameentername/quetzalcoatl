@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c34v5ved7ydh7"]
+
+[ext_resource type="PackedScene" uid="uid://cld2s5j6txgq8" path="res://sliding_puzzle.tscn" id="1_cqk70"]
+
+[node name="OnlySlidingPuzzle" type="Node2D" unique_id=1815411696]
+
+[node name="SlidingPuzzle" parent="." unique_id=682491742 instance=ExtResource("1_cqk70")]
+position = Vector2(192, 192)
+input_enabled = true

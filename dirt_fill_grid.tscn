@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://bubb68drm2qri"]
+
+[ext_resource type="PackedScene" uid="uid://dqx6dsa7j6e7g" path="res://dirt_fill.tscn" id="1_2bg8l"]
+[ext_resource type="Script" uid="uid://cernvyco8ion" path="res://dirt_fill_grid.gd" id="1_tbfph"]
+[ext_resource type="PackedScene" uid="uid://bv5sljmrc8ods" path="res://quetzalcoatl.tscn" id="2_uvwml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkhly"]
+size = Vector2(128, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_tbfph"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 960, 1096, 0, 0, 0, 0, 961.3998, 849.00006, 0, 0, 0, 0, 960, 192, 0, 0, 0, 0, 192, 192, 0, 0, 0, 0, 192, 704, 0, 0, 0, 0, 576, 704, 0, 0, 0, 0, 576, 320, 0, 0, 0, 0, 320, 320, 0, 0, 0, 0, 320, 576, 0, 0, 0, 0, 832, 576, 0, 0, 0, 0, 1088, 576, 0, 0, 0, 0, 1088, 56, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 64, 768, 0, 0, 0, 0, 704, 768, 0, 0, 0, 0, 704, 320, 0, 0, 0, 0, 832, 320, 0, 0, 0, 0, 832, 832, 0, 0, 0, 0, 1088, 832, 0, 0, 0, 0, 1088, 448, 0, 0, 0, 0, 448, 448, 0, 0, 0, 0, -1536, 448)
+}
+point_count = 22
+
+[node name="DirtFillGrid" type="Node2D" unique_id=1839308908]
+script = ExtResource("1_tbfph")
+
+[node name="DirtFill" parent="." unique_id=1398028577 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 64)
+
+[node name="DirtFill2" parent="." unique_id=802307655 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 64)
+
+[node name="DirtFill3" parent="." unique_id=2017410199 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 64)
+
+[node name="DirtFill4" parent="." unique_id=835437794 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 64)
+
+[node name="DirtFill5" parent="." unique_id=27459454 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 64)
+
+[node name="DirtFill6" parent="." unique_id=1167043487 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 64)
+
+[node name="DirtFill7" parent="." unique_id=420635781 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 64)
+
+[node name="DirtFill8" parent="." unique_id=487994328 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 64)
+
+[node name="DirtFill9" parent="." unique_id=732987774 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 64)
+
+[node name="DirtFill10" parent="." unique_id=182162712 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 192)
+
+[node name="DirtFill11" parent="." unique_id=421528421 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 192)
+
+[node name="DirtFill12" parent="." unique_id=2081456554 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 192)
+
+[node name="DirtFill13" parent="." unique_id=1544291363 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 192)
+
+[node name="DirtFill14" parent="." unique_id=1412555741 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 192)
+
+[node name="DirtFill15" parent="." unique_id=1360944192 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 192)
+
+[node name="DirtFill16" parent="." unique_id=1523399609 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 192)
+
+[node name="DirtFill17" parent="." unique_id=1580255367 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 192)
+
+[node name="DirtFill18" parent="." unique_id=995675568 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 192)
+
+[node name="DirtFill19" parent="." unique_id=1951258124 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 320)
+
+[node name="DirtFill20" parent="." unique_id=1962254918 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 320)
+
+[node name="DirtFill21" parent="." unique_id=284698137 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 320)
+
+[node name="DirtFill22" parent="." unique_id=1084515881 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 320)
+
+[node name="DirtFill23" parent="." unique_id=1707569306 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 320)
+
+[node name="DirtFill24" parent="." unique_id=2054499745 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 320)
+
+[node name="DirtFill25" parent="." unique_id=341526666 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 320)
+
+[node name="DirtFill26" parent="." unique_id=1633759402 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 320)
+
+[node name="DirtFill27" parent="." unique_id=759924496 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 320)
+
+[node name="DirtFill28" parent="." unique_id=117211447 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 448)
+
+[node name="DirtFill29" parent="." unique_id=1138121112 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 448)
+
+[node name="DirtFill30" parent="." unique_id=1257408127 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 448)
+
+[node name="DirtFill31" parent="." unique_id=839654687 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 448)
+
+[node name="DirtFill32" parent="." unique_id=2037616520 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 448)
+
+[node name="DirtFill33" parent="." unique_id=88019334 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 448)
+
+[node name="DirtFill34" parent="." unique_id=1490578739 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 448)
+
+[node name="DirtFill35" parent="." unique_id=2079930174 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 448)
+
+[node name="DirtFill36" parent="." unique_id=587883190 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 448)
+
+[node name="DirtFill37" parent="." unique_id=505660344 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 576)
+
+[node name="DirtFill38" parent="." unique_id=196370880 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 576)
+
+[node name="DirtFill39" parent="." unique_id=637615769 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 576)
+
+[node name="DirtFill40" parent="." unique_id=1271629002 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 576)
+
+[node name="DirtFill41" parent="." unique_id=1317328803 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 576)
+
+[node name="DirtFill42" parent="." unique_id=520707001 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 576)
+
+[node name="DirtFill43" parent="." unique_id=1990309133 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 576)
+
+[node name="DirtFill44" parent="." unique_id=1513270674 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 576)
+
+[node name="DirtFill45" parent="." unique_id=1314796696 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 576)
+
+[node name="DirtFill46" parent="." unique_id=313800857 instance=ExtResource("1_2bg8l")]
+position = Vector2(64, 704)
+
+[node name="DirtFill47" parent="." unique_id=979614816 instance=ExtResource("1_2bg8l")]
+position = Vector2(192, 704)
+
+[node name="DirtFill48" parent="." unique_id=1630017892 instance=ExtResource("1_2bg8l")]
+position = Vector2(320, 704)
+
+[node name="DirtFill49" parent="." unique_id=105949231 instance=ExtResource("1_2bg8l")]
+position = Vector2(448, 704)
+
+[node name="DirtFill50" parent="." unique_id=667542010 instance=ExtResource("1_2bg8l")]
+position = Vector2(576, 704)
+
+[node name="DirtFill51" parent="." unique_id=401701727 instance=ExtResource("1_2bg8l")]
+position = Vector2(704, 704)
+
+[node name="DirtFill52" parent="." unique_id=1356845908 instance=ExtResource("1_2bg8l")]
+position = Vector2(832, 704)
+
+[node name="DirtFill53" parent="." unique_id=386129489 instance=ExtResource("1_2bg8l")]
+position = Vector2(960, 704)
+
+[node name="DirtFill54" parent="." unique_id=276189615 instance=ExtResource("1_2bg8l")]
+position = Vector2(1088, 704)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1127675754]
+position = Vector2(-1536, 448)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=440890344]
+shape = SubResource("RectangleShape2D_jkhly")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1853775317]
+curve = SubResource("Curve2D_tbfph")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1045942630]
+position = Vector2(960, 1096)
+rotation = -1.5651293
+
+[node name="Quetzalcoatl" parent="." unique_id=6477618 node_paths=PackedStringArray("follow_path") instance=ExtResource("2_uvwml")]
+position = Vector2(-128, 64)
+follow_path = NodePath("../Path2D/PathFollow2D")
+number_segments = 20
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

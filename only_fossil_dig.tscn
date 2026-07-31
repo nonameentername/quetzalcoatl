@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://83ay4q0c7pdn"]
+
+[ext_resource type="PackedScene" uid="uid://l4f731bs60eg" path="res://fossil_dig_grid.tscn" id="1_pp48s"]
+
+[node name="OnlyFossilDig" type="Node2D" unique_id=1532948295]
+
+[node name="FossilDigGrid" parent="." unique_id=1805141599 instance=ExtResource("1_pp48s")]
+position = Vector2(192, 192)

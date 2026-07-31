@@ -1,3 +1,17 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
+*.o
+*.obj
+*.os
+*.so
+.cache
+.godot
+.mono
+.sconsign.dblite
+.vs
+addons/csound
+addons/lv2-host
+addons/vst3-host
+addons/synths
+build
+build-log.txt
+compile_commands.json
+.plugged

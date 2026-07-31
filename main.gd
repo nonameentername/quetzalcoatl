@@ -216,6 +216,7 @@ func _on_dig_and_puzzle_solved() -> void:
 
 	world.player.input_enabled = true
 	world.quetzalcoatl.movement_enabled = true
+	world.brain.movement_enabled = true
 
 	world.outside_audio()
 

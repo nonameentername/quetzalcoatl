@@ -14,6 +14,8 @@ var input_enabled: bool:
 			player.input_enabled = value
 		if quetzalcoatl:
 			quetzalcoatl.movement_enabled = value
+		if brain:
+			brain.movement_enabled = value
 	get():
 		return input_enabled
 
@@ -31,6 +33,9 @@ var quetzalcoatl: Quetzalcoatl = $Quetzalcoatl
 
 @onready
 var brains: Node2D = $Brains
+
+@onready
+var brain: Brain = $Brains/Brain
 
 @onready
 var tile_map1: TileMapLayer = $TileMapLayer1

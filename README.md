@@ -2,17 +2,23 @@
 
 A game created for **VelociCode 2026**, San Antonio’s month-long game jam.
 
-The theme for this year’s jam is **Fossil**. This project uses [Megatroid](https://github.com/nonameentername/gba-games), one of my earlier games, as its “fossil.”
+The theme for the jam was **Fossil**. This project uses [Megatroid](https://github.com/nonameentername/gba-games), one of my earlier games, as its “fossil” and reimagines it with new gameplay, puzzles, artwork, and interactive audio.
 
-This Godot project uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-synths](https://github.com/nonameentername/godot-synths/).
+This Godot project uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-synths](https://github.com/nonameentername/godot-synths/) for its music and sound effects.
 
-**[Play Quetzalcoatl in your browser](https://nonameentername.github.io/quetzalcoatl/index.html)**
+**[Play Quetzalcoatl in your browser](https://nonameentername.github.io/quetzalcoatl/)**
+
+**[Play Quetzalcoatl on itch.io](https://nonameentername.itch.io/quetzalcoatl)**
+
+## Gameplay Video
+
+[![Watch the Quetzalcoatl gameplay video](./images/image-02.png)](https://youtu.be/zt7ODFeZgnQ)
 
 ## Images
 
-![Puzzle demo](./images/image-01.png)
+![Puzzle gameplay](./images/image-01.png)
 
-![Gameplay demo](./images/image-02.png)
+![Quetzalcoatl gameplay](./images/image-02.png)
 
 ## Installation
 
@@ -31,7 +37,7 @@ godot --headless -s plug.gd install force
 godot --headless --import
 ```
 
-### 3. Run the project
+### 3. Open the project
 
 ```bash
 godot --editor project.godot
